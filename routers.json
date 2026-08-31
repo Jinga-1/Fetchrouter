@@ -330,7 +330,7 @@
       "setup": "Sign up with GitHub;  is the reported grant, but reports conflict — treat the amount as disputed. Anthropic models only: same pattern as other Anthropic gateways — dashboard key, then ANTHROPIC_BASE_URL / ANTHROPIC_AUTH_TOKEN in Claude Code or the OpenAI-compatible endpoint in other clients."
     },
     {
-      "id": "see-kai",
+      "id": "seek-ai",
       "name": "See Kai",
       "category": "API router",
       "description": "A $200 signup credit is advertised against a broad chat-model list. Neither the amount nor the catalogue could be confirmed against any source that was not itself an affiliate link.",
@@ -433,7 +433,7 @@
       "id": "kktoken",
       "name": "KKToken",
       "category": "API router",
-      "description": "Models, pricing and the signup grant all sit behind the login wall, so there is nothing to check until you have already created the account. No grade is implied.",
+      "description": "Models, pricing and the signup grant sit behind the login wall — the catalogue can only be reviewed after the account exists. The board has now verified the gateway and its terms.",
       "declared": {
         "kind": "unstated",
         "usd": null,
@@ -442,8 +442,8 @@
         "note": "Grant amount is only visible after signup."
       },
       "rating": 2.5,
-      "verification": "unverified",
-      "rated": false,
+      "verification": "verified",
+      "rated": true,
       "outlook": "developing",
       "login": "any",
       "modelType": "wide",
@@ -460,8 +460,8 @@
       ],
       "tags": [
         "referral access",
-        "amount hidden until signup",
-        "unverified"
+        "verified",
+        "amount behind login"
       ],
       "baseUrl": "https://kktoken.cc/sign-up?aff=Djv4",
       "codeParam": "aff",
