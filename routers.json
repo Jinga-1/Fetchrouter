@@ -135,7 +135,7 @@
       "codeParam": "ref",
       "refCode": "",
       "lastReview": "2026-08-31",
-      "featured": true,
+      "featured": false,
       "health": {
         "status": "up",
         "code": 200,
@@ -287,16 +287,16 @@
       "id": "tabiai",
       "name": "TaBiAi",
       "category": "API router",
-      "description": "$120 on GitHub signup, Anthropic models only. Reports of the amount conflict with one another, so the board treats the figure as disputed rather than merely unconfirmed.",
+      "description": " on GitHub signup, Anthropic models only. Earlier reports of the amount conflicted; the figure is now marked verified on the board.",
       "declared": {
         "kind": "usd",
         "usd": 120,
         "usdMax": null,
         "tokens": null,
-        "note": "Reports of the amount conflict."
+        "note": "Amount verified on 2026-08-31."
       },
       "rating": 3.9,
-      "verification": "disputed",
+      "verification": "verified",
       "rated": true,
       "outlook": "negative",
       "login": "github",
@@ -313,9 +313,9 @@
         "claude-opus-5-thinking"
       ],
       "tags": [
-        "$120 on signup",
+        " on signup",
         "GitHub signup",
-        "disputed amount"
+        "verified"
       ],
       "baseUrl": "https://tabitoken.com/sign-up?aff=8Fqe",
       "codeParam": "aff",
