@@ -1,0 +1,1073 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FetchRouter — Compare every AI gateway's free credit</title>
+<meta name="description" content="Every AI gateway with free signup credit: its bonus, the models behind it, and what it really costs after. Narrow the list before you commit to a signup.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b0d0e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2334d399'/%3E%3Cpath d='M9 22V10h13M9 16h9' stroke='%230b0d0e' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+/* ==========================================================
+   FETCHROUTER — free-credit AI gateway board
+   Dark board, emerald accent, mono metadata, card grid.
+   ========================================================== */
+:root{
+  --bg:#0b0d0e;
+  --bg-hdr:rgba(11,13,14,.82);
+  --card:#121517;
+  --card-2:#171b1e;
+  --sunk:#15191c;
+  --line:#22282b;
+  --line-2:#2d353a;
+  --fg:#e9edeb;
+  --fg-2:#98a3a5;
+  --fg-3:#6d787b;
+  --green:#34d399;
+  --green-dim:#1f9d76;
+  --green-ink:#07281e;
+  --amber:#e2b350;
+  --red:#f0736f;
+  --f:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --m:"JetBrains Mono",ui-monospace,"Courier New",monospace;
+  --r:14px;
+  --gut:clamp(1.1rem,4vw,2.5rem);
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--fg);
+  font-family:var(--f); font-size:1rem; line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{margin:0; font-weight:800; letter-spacing:-.03em; line-height:1.08}
+p{margin:0}
+svg{display:block}
+[hidden]{display:none !important}
+a{color:var(--green); text-decoration:none}
+::selection{background:color-mix(in srgb,var(--green) 30%,transparent)}
+:root{scrollbar-color:var(--line-2) var(--bg); scrollbar-width:thin; caret-color:var(--green)}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--line-2);border:3px solid var(--bg);border-radius:99px}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:2px solid var(--green); outline-offset:2px; border-radius:6px;
+}
+[id]{scroll-margin-top:5.5rem}
+.vh{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.mono{font-family:var(--m)}
+.wrap{max-width:82rem; margin:0 auto; padding:0 var(--gut)}
+.skip{position:absolute; left:.75rem; top:-3rem; z-index:90; background:var(--green); color:var(--green-ink);
+  padding:.6rem 1rem; border-radius:8px; font-weight:700; transition:top .18s var(--ease)}
+.skip:focus{top:.75rem}
+body.no-scroll{overflow:hidden}
+
+/* ---------- Header ---------- */
+header.top{
+  position:sticky; top:0; z-index:50; background:var(--bg-hdr);
+  backdrop-filter:blur(14px) saturate(1.4); border-bottom:1px solid var(--line);
+}
+.top-in{display:flex; align-items:center; gap:1.25rem; justify-content:space-between; padding:.85rem 0}
+.brand{display:flex; flex-direction:column; gap:.1rem; color:var(--fg)}
+.brand b{font-size:1.0625rem; font-weight:800; letter-spacing:-.025em; line-height:1.1}
+.brand span{font-family:var(--m); font-size:.625rem; letter-spacing:.16em; color:var(--fg-3); text-transform:uppercase}
+.top-nav{display:flex; align-items:center; gap:.35rem}
+.top-nav a{padding:.5rem .7rem; border-radius:8px; font-size:.875rem; font-weight:600; color:var(--fg-2)}
+.top-nav a:hover{color:var(--fg); background:var(--card-2)}
+.top-nav a.on{color:var(--fg)}
+.trackpill{font-family:var(--m); font-size:.6875rem; color:var(--amber); border:1px solid color-mix(in srgb,var(--amber) 40%,transparent);
+  background:color-mix(in srgb,var(--amber) 9%,transparent); padding:.34rem .6rem; border-radius:99px; white-space:nowrap}
+
+/* ---------- Hero ---------- */
+.hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line); text-align:center;
+  padding:clamp(3.5rem,10vw,7.5rem) 0 clamp(3rem,8vw,6rem)}
+.hero::before{content:""; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(58rem 30rem at 50% -14%,color-mix(in srgb,var(--green) 13%,transparent),transparent 70%),
+    radial-gradient(40rem 24rem at 50% 108%,color-mix(in srgb,var(--green) 6%,transparent),transparent 70%);
+}
+.hero::after{content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+  background-image:radial-gradient(circle,var(--line-2) 1px,transparent 1px);
+  background-size:26px 26px;
+  mask-image:radial-gradient(52rem 30rem at 50% 30%,#000,transparent 72%);
+}
+.hero .wrap{position:relative}
+.eyebrow{display:inline-flex; font-family:var(--m); font-size:.6875rem; letter-spacing:.22em; color:var(--green);
+  border:1px solid color-mix(in srgb,var(--green) 34%,transparent); background:color-mix(in srgb,var(--green) 8%,transparent);
+  padding:.4rem .75rem; border-radius:99px; margin-bottom:clamp(1.4rem,3vw,2.2rem)}
+.hero h1{
+  font-size:clamp(2.35rem,6.6vw,4.5rem); letter-spacing:-.042em; line-height:1.02;
+  max-width:22ch; margin:0 auto; font-weight:800;
+}
+.hero h1 em{color:var(--green); font-style:italic; font-weight:800}
+.hero .sub{color:var(--fg-2); font-size:clamp(1rem,1.4vw,1.1875rem); max-width:44ch;
+  margin:clamp(1.1rem,2.5vw,1.6rem) auto 0}
+.hero-cta{display:flex; flex-direction:column; align-items:center; gap:.9rem; margin-top:clamp(1.6rem,3.5vw,2.4rem)}
+.hero-meta{font-family:var(--m); font-size:.8125rem; color:var(--fg-3)}
+.hero-meta b{color:var(--green); font-weight:500}
+.hero-disc{font-family:var(--m); font-size:.6875rem; letter-spacing:.02em; color:var(--fg-3);
+  max-width:52ch; margin:1.25rem auto 0; line-height:1.7}
+.hero-disc b{color:var(--fg-2); font-weight:500}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.55rem; cursor:pointer;
+  font-family:var(--f); font-size:.9375rem; font-weight:700; letter-spacing:-.005em;
+  padding:.85rem 1.4rem; border-radius:10px; border:1px solid transparent;
+  background:var(--green); color:var(--green-ink);
+  transition:background .16s var(--ease),transform .16s var(--ease),border-color .16s var(--ease),color .16s var(--ease)}
+.btn:hover{background:#4ee3ad}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:1.05em;height:1.05em;stroke:currentColor;fill:none;stroke-width:2.1;stroke-linecap:round;stroke-linejoin:round}
+.btn-2{background:transparent; color:var(--fg); border-color:var(--line-2)}
+.btn-2:hover{background:var(--card-2); border-color:var(--fg-3); color:var(--fg)}
+.btn-sm{padding:.55rem .8rem; font-size:.8125rem; border-radius:8px}
+.btn-danger{background:transparent; color:var(--red); border-color:color-mix(in srgb,var(--red) 42%,transparent)}
+.btn-danger:hover{background:color-mix(in srgb,var(--red) 15%,transparent); color:var(--red); border-color:var(--red)}
+.btn[disabled]{opacity:.4; pointer-events:none}
+.linkish{background:none;border:0;padding:0;cursor:pointer;font:600 .8125rem/1.4 var(--f);color:var(--green)}
+.linkish:hover{text-decoration:underline}
+.linkish.danger{color:var(--red)}
+
+/* ---------- Section heading ---------- */
+.board{padding:clamp(2.5rem,6vw,4.5rem) 0 clamp(3rem,7vw,5rem)}
+.board-head{max-width:52ch}
+.board-head h2{font-size:clamp(1.75rem,4vw,2.5rem); letter-spacing:-.035em}
+.board-head p{color:var(--fg-2); margin-top:.7rem; font-size:1.0625rem}
+
+/* ---------- Controls ---------- */
+.controls{margin:clamp(1.5rem,3.5vw,2.25rem) 0; background:var(--card); border:1px solid var(--line);
+  border-radius:var(--r); padding:.9rem; display:flex; gap:.75rem; flex-wrap:wrap; align-items:center}
+.search{flex:1 1 20rem; display:flex; align-items:center; gap:.6rem; background:var(--sunk);
+  border:1px solid var(--line); border-radius:10px; padding:.7rem .9rem; min-width:0}
+.search:focus-within{border-color:var(--green-dim)}
+.search svg{width:1.1rem;height:1.1rem;stroke:var(--fg-3);fill:none;stroke-width:2;flex:none}
+.search input{flex:1; min-width:0; background:none; border:0; color:var(--fg); font:400 .9375rem var(--f); outline:none}
+.search input::placeholder{color:var(--fg-3)}
+.ctl{display:flex; align-items:center; gap:.5rem}
+.ctl label{font-size:.75rem; color:var(--fg-3); font-weight:600}
+select{appearance:none; -webkit-appearance:none; background:var(--sunk); color:var(--fg);
+  border:1px solid var(--line); border-radius:10px; padding:.7rem 2.2rem .7rem .85rem;
+  font:600 .875rem var(--f); cursor:pointer; outline:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' stroke='%236d787b' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right .7rem center; background-size:1rem}
+select:hover{border-color:var(--line-2)}
+select:focus-visible{border-color:var(--green)}
+.count{font-family:var(--m); font-size:.8125rem; color:var(--fg-3); margin-bottom:1.25rem}
+.count b{color:var(--fg-2); font-weight:500}
+
+/* ---------- Cards ---------- */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,21.5rem),1fr)); gap:1rem}
+.card{position:relative; display:flex; flex-direction:column; gap:1rem;
+  background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:1.15rem;
+  transition:border-color .18s var(--ease), transform .18s var(--ease), box-shadow .18s var(--ease)}
+.card:hover{border-color:var(--line-2); transform:translateY(-2px);
+  box-shadow:0 10px 28px -18px rgba(0,0,0,.9)}
+.card.featured{border-color:color-mix(in srgb,var(--green) 55%,var(--line));
+  background:linear-gradient(180deg,color-mix(in srgb,var(--green) 6%,var(--card)),var(--card))}
+.card-top{display:flex; align-items:flex-start; gap:.75rem}
+.card-idx{font-size:.6875rem; color:var(--fg-3); padding-top:.2rem; flex:none}
+.card-titles{flex:1; min-width:0}
+.card-titles h3{font-size:1.125rem; letter-spacing:-.02em}
+.card-titles .cat{display:block; font-family:var(--m); font-size:.625rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--fg-3); margin-top:.15rem}
+.card-badges{display:flex; flex-direction:column; align-items:flex-end; gap:.4rem; flex:none}
+.badge{font-family:var(--m); font-size:.625rem; letter-spacing:.12em; text-transform:uppercase;
+  padding:.22rem .5rem; border-radius:6px; border:1px solid var(--line-2); color:var(--fg-2)}
+.badge.feat{color:var(--green-ink); background:var(--green); border-color:var(--green); font-weight:700}
+.outlook{display:inline-flex; align-items:center; gap:.35rem; font-family:var(--m); font-size:.625rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--fg-3)}
+.outlook::before{content:""; width:7px; height:7px; border-radius:99px; background:var(--fg-3)}
+.outlook.ok::before{background:var(--green)}
+.outlook.warn::before{background:var(--amber)}
+.outlook.bad::before{background:var(--red)}
+.card-main{display:flex; align-items:flex-start; justify-content:space-between; gap:1rem}
+.credit-amt{font-size:clamp(1.45rem,2.6vw,1.75rem); font-weight:800; letter-spacing:-.03em; color:var(--green); line-height:1.05}
+.credit-lab{display:block; font-family:var(--m); font-size:.625rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--fg-3); margin-top:.25rem}
+.verdict{display:inline-flex; align-items:center; gap:.35rem; font-family:var(--m); font-size:.625rem;
+  letter-spacing:.1em; text-transform:uppercase; padding:.32rem .6rem; border-radius:8px; white-space:nowrap}
+.v-ok{color:var(--green); border:1px solid color-mix(in srgb,var(--green) 42%,transparent);
+  background:color-mix(in srgb,var(--green) 8%,transparent)}
+.v-warn{color:var(--amber); border:1px solid color-mix(in srgb,var(--amber) 42%,transparent);
+  background:color-mix(in srgb,var(--amber) 8%,transparent)}
+.v-bad{color:var(--red); border:1px solid color-mix(in srgb,var(--red) 45%,transparent);
+  background:color-mix(in srgb,var(--red) 8%,transparent)}
+.desc{color:var(--fg-2); font-size:.9375rem}
+.meta-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:.5rem; border-top:1px solid var(--line); padding-top:.9rem}
+.meta-it .m-label{display:block; font-family:var(--m); font-size:.5625rem; letter-spacing:.14em; text-transform:uppercase; color:var(--fg-3)}
+.meta-it .m-val{font-size:.8125rem; font-weight:600; color:var(--fg); margin-top:.1rem}
+.models h4,.duty-title{font-family:var(--m); font-size:.625rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--fg-3); margin-bottom:.55rem; font-weight:500}
+.chips{display:flex; flex-wrap:wrap; gap:.4rem}
+.chip{font-family:var(--m); font-size:.6875rem; color:var(--fg-2); border:1px solid var(--line-2);
+  background:var(--sunk); border-radius:99px; padding:.22rem .55rem; white-space:nowrap}
+.duty{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.3rem}
+.duty li{position:relative; padding-left:1.05rem; font-size:.8125rem; color:var(--fg-2)}
+.duty li::before{content:"•"; position:absolute; left:0; color:var(--green)}
+.tags{display:flex; flex-wrap:wrap; gap:.35rem}
+.tag{font-family:var(--m); font-size:.625rem; letter-spacing:.05em; color:var(--green);
+  background:color-mix(in srgb,var(--green) 8%,transparent); border:1px solid color-mix(in srgb,var(--green) 28%,transparent);
+  border-radius:6px; padding:.2rem .5rem}
+.card-foot{display:flex; align-items:center; gap:.5rem; border-top:1px solid var(--line); padding-top:.9rem; margin-top:auto}
+.rating{display:inline-flex; align-items:center; gap:.35rem; font-family:var(--m); font-size:.8125rem; color:var(--fg-2); margin-right:auto}
+.rating svg{width:1rem;height:1rem;stroke:var(--amber);fill:var(--amber)}
+.rating.nr{color:var(--fg-3); font-size:.6875rem; letter-spacing:.1em}
+.empty{padding:3rem 1rem; text-align:center; color:var(--fg-2); border:1px dashed var(--line-2); border-radius:var(--r)}
+.empty p{margin-bottom:.75rem}
+
+/* ---------- How it works ---------- */
+.how{border-top:1px solid var(--line); padding:clamp(2.5rem,6vw,4.5rem) 0; background:var(--sunk)}
+.how-grid{display:grid; gap:1rem; margin-top:clamp(1.5rem,3.5vw,2.25rem); grid-template-columns:repeat(auto-fit,minmax(min(100%,18rem),1fr))}
+.how-grid>div{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:1.25rem}
+.how-grid h3{font-size:1.0625rem}
+.how-grid h3 .mono{display:block; font-size:.6875rem; color:var(--green); letter-spacing:.12em; margin-bottom:.4rem; font-weight:500}
+.how-grid p{color:var(--fg-2); font-size:.9375rem; margin-top:.6rem}
+
+/* ---------- Footer ---------- */
+.foot{border-top:1px solid var(--line); padding:clamp(2rem,5vw,3.5rem) 0 2.5rem; color:var(--fg-3)}
+.foot p{font-size:.875rem; max-width:60ch}
+.foot .mono{font-size:.625rem; letter-spacing:.18em; color:var(--fg-2); margin-bottom:.6rem}
+.foot-actions{margin-top:1rem; display:flex; gap:1rem}
+.foot-actions a{color:var(--fg-2); font-size:.8125rem}
+.foot-actions a:hover{color:var(--fg)}
+
+/* ---------- Toast ---------- */
+.toast{position:fixed; left:50%; bottom:1.4rem; transform:translate(-50%,1.2rem); z-index:120;
+  background:var(--card-2); border:1px solid var(--line-2); color:var(--fg); border-radius:10px;
+  padding:.7rem 1.1rem; font-family:var(--m); font-size:.75rem; box-shadow:0 14px 34px -14px rgba(0,0,0,.85);
+  opacity:0; pointer-events:none; transition:opacity .22s var(--ease), transform .22s var(--ease); max-width:min(92vw,32rem); text-align:center}
+.toast.show{opacity:1; transform:translate(-50%,0)}
+
+/* ---------- Admin panel ---------- */
+.panel{position:fixed; inset:0; z-index:100}
+.panel-back{position:absolute; inset:0; background:rgba(4,6,7,.66); backdrop-filter:blur(3px)}
+.sheet{position:absolute; top:0; right:0; bottom:0; width:min(38rem,100%); background:var(--bg);
+  border-left:1px solid var(--line-2); display:flex; flex-direction:column;
+  box-shadow:-24px 0 60px -30px rgba(0,0,0,.9)}
+.sheet-head{display:flex; align-items:flex-start; justify-content:space-between; gap:1rem;
+  padding:1.15rem 1.35rem; border-bottom:1px solid var(--line); background:var(--card)}
+.sheet-head h2{font-size:1.25rem}
+.sheet-head p{font-family:var(--m); font-size:.625rem; letter-spacing:.1em; color:var(--fg-3); margin-top:.15rem}
+.icon-btn{background:var(--sunk); border:1px solid var(--line-2); color:var(--fg-2); width:2.1rem; height:2.1rem;
+  border-radius:8px; cursor:pointer; font-size:1rem; line-height:1}
+.icon-btn:hover{color:var(--fg); border-color:var(--fg-3)}
+.sheet-body{flex:1; overflow-y:auto; padding:1.25rem 1.35rem 2.5rem}
+.admin-list{margin-bottom:1.5rem}
+.alist-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:.6rem}
+.alist-head h3{font-size:.8125rem; text-transform:uppercase; letter-spacing:.1em; color:var(--fg-3); font-family:var(--m)}
+.alist-row{display:flex; align-items:center; justify-content:space-between; gap:.75rem; padding:.55rem .15rem; border-bottom:1px solid var(--line)}
+.alist-row:last-child{border-bottom:0}
+.alist-id b{display:block; font-size:.9rem}
+.alist-id span{font-family:var(--m); font-size:.625rem; letter-spacing:.1em; text-transform:uppercase; color:var(--fg-3)}
+.alist-actions{display:flex; gap:.7rem}
+.aform{border:1px solid var(--line); border-radius:var(--r); padding:1.15rem; background:var(--card)}
+.aform-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem}
+.aform-head h3{font-size:1.0625rem}
+.aform-actions{display:flex; gap:.5rem}
+.field{margin-bottom:.95rem}
+.field label{display:block; font-size:.75rem; font-weight:600; color:var(--fg-3); margin-bottom:.35rem}
+.field label b{color:var(--red); font-weight:600}
+.field-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:0 .8rem}
+.field .hint{font-family:var(--m); font-size:.625rem; color:var(--fg-3); margin-top:.3rem}
+.aform input[type=text],.aform input[type=url],.aform input[type=number],.aform input[type=date],
+.aform textarea{width:100%; background:var(--sunk); color:var(--fg); border:1px solid var(--line);
+  border-radius:10px; padding:.65rem .85rem; font:400 .9rem var(--f); outline:none}
+.aform textarea{resize:vertical; min-height:4.2rem; font-family:var(--m); font-size:.8125rem; line-height:1.55}
+.aform input:focus,.aform textarea:focus{border-color:var(--green-dim)}
+.fcheck{display:flex; align-items:center; gap:.55rem; font-size:.875rem; color:var(--fg-2); cursor:pointer; margin-bottom:.95rem}
+.fcheck input{accent-color:var(--green); width:1.05rem; height:1.05rem; cursor:pointer}
+.aform-foot{display:flex; justify-content:flex-end; gap:.6rem; margin-top:1.1rem}
+.publish{margin-top:1.5rem; border:1px dashed var(--line-2); border-radius:var(--r); padding:1.15rem}
+.publish h3{font-size:1rem; margin-bottom:.45rem}
+.publish p{color:var(--fg-2); font-size:.875rem; margin-bottom:1rem}
+.publish .btn{margin-right:.6rem}
+</style>
+</head>
+<body>
+<a class="skip" href="#board">Skip to board</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#top">
+      <b>FetchRouter</b>
+      <span>Free-credit AI gateway board</span>
+    </a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="#board">Board</a>
+      <a href="#how">How to read a card</a>
+      <a id="draftPill" class="trackpill" href="#admin" hidden>Local draft</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">ROUTER WATCH &middot; BOARD OF RECORD</p>
+      <h1>Every AI gateway with <em>free credit</em>, on one board.</h1>
+      <p class="sub">Compare signup bonuses, model catalogues, login requirements — and what could and could not be verified — before you spend an OAuth grant on a gateway that turns out to be dead, restricted, or fictional.</p>
+      <div class="hero-cta">
+        <a class="btn" href="#board">Browse gateways
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+        <p class="hero-meta"><b id="heroCount">0</b> offers tracked &middot; <b id="heroVerified">0</b> verified &middot; <b id="heroValue">—</b> in signup credit</p>
+      </div>
+      <p class="hero-disc"><b>Affiliate disclosure:</b> FetchRouter earns when you sign up through links on this page. Every outbound link carries the owner&rsquo;s referral code where one is set. Nothing here is verified by FetchRouter unless the card says so — the board publishes its own uncertainty.</p>
+    </div>
+  </section>
+
+  <section class="board" id="board">
+    <div class="wrap">
+      <div class="board-head">
+        <h2>The board</h2>
+        <p>Search by name or model, filter by category, verification and model class, then sort. Offers change fast — every entry carries a last-checked date.</p>
+      </div>
+      <div class="controls">
+        <div class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <label class="vh" for="q">Search gateways</label>
+          <input id="q" type="search" placeholder="Search gateways, models, tags…" autocomplete="off">
+        </div>
+        <div class="ctl">
+          <label for="fCat">Category</label>
+          <select id="fCat"><option value="all">All</option></select>
+        </div>
+        <div class="ctl">
+          <label for="fMt">Models</label>
+          <select id="fMt"><option value="all">All</option></select>
+        </div>
+        <div class="ctl">
+          <label for="fVer">Status</label>
+          <select id="fVer"><option value="all">All</option></select>
+        </div>
+        <div class="ctl">
+          <label for="fSort">Sort</label>
+          <select id="fSort">
+            <option value="best">Highest rated</option>
+            <option value="credit">Most credit</option>
+            <option value="name">A → Z</option>
+          </select>
+        </div>
+      </div>
+      <p class="count" role="status"><b id="resultCount">0</b> of <span id="totalCount">0</span> gateways shown</p>
+      <div id="boardGrid" class="grid" aria-live="polite"></div>
+      <div id="empty" class="empty" hidden>
+        <p>No gateways match those filters.</p>
+        <button class="linkish" id="resetBtn" type="button">Reset filters</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="board-head">
+        <h2>How to read a card</h2>
+      </div>
+      <div class="how-grid">
+        <div>
+          <h3><span class="mono">01</span>The number is not the grade</h3>
+          <p>A $200 claim that nobody could confirm ranks below a $70 grant that works. Sorting defaults to rating, never to the dollar figure.</p>
+        </div>
+        <div>
+          <h3><span class="mono">02</span>Publish the doubt</h3>
+          <p>Every entry carries a verdict — verified, unverified, or disputed — with the same visual weight as the credit figure, and unverifiable offers are ranked accordingly.</p>
+        </div>
+        <div>
+          <h3><span class="mono">03</span>Cost the click honestly</h3>
+          <p>See what a signup actually costs — a GitHub OAuth grant, an account-age rule, a coding-agent-only restriction — next to what it pays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="mono">FETCHROUTER — AN AFFILIATE BOARD</p>
+    <p>FetchRouter earns from signups reached through this page. Figures are seeded from the Router Watch board on 2026-08-31 and are third-party reported, not FetchRouter&rsquo;s own verification. Last-checked dates are the owner&rsquo;s to maintain. A gateway marked <b>disputed</b> or <b>unverified</b> is ranked accordingly — even though the site earns from the click either way.</p>
+    <p class="foot-actions"><a href="#top">Back to top</a> &middot; <a href="#admin">Admin</a></p>
+  </div>
+</footer>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<div id="admin" class="panel" hidden role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+  <div class="panel-back" id="adminBack"></div>
+  <aside class="sheet">
+    <header class="sheet-head">
+      <div>
+        <h2 id="adminTitle">Admin</h2>
+        <p id="adminHint">Local-only drafts &middot; publish by exporting routers.json</p>
+      </div>
+      <button class="icon-btn" id="adminClose" type="button" aria-label="Close admin panel">✕</button>
+    </header>
+    <div class="sheet-body">
+      <div class="admin-list">
+        <div class="alist-head">
+          <h3>Routers on this board</h3>
+          <button class="btn btn-sm" id="newBtn" type="button">+ New</button>
+        </div>
+        <div id="adminList"></div>
+      </div>
+
+      <form class="aform" id="adminForm" novalidate>
+        <div class="aform-head">
+          <h3 id="formTitle">Add gateway</h3>
+          <div class="aform-actions">
+            <button type="button" class="btn btn-sm btn-2" id="dupBtn" hidden>Duplicate</button>
+            <button type="button" class="btn btn-sm btn-danger" id="delBtn" hidden>Delete</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-name">Name <b>*</b></label>
+          <input id="f-name" type="text" required>
+        </div>
+        <div class="field-grid">
+          <div class="field">
+            <label for="f-category">Category</label>
+            <input id="f-category" type="text" placeholder="API router">
+          </div>
+          <div class="field">
+            <label for="f-last">Last checked</label>
+            <input id="f-last" type="date">
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-desc">Description</label>
+          <textarea id="f-desc" rows="3"></textarea>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="f-kind">Credit kind</label>
+            <select id="f-kind">
+              <option value="usd">USD</option>
+              <option value="tokens">Tokens</option>
+              <option value="unstated">Unstated</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-note">Credit note</label>
+            <input id="f-note" type="text">
+          </div>
+          <div class="field">
+            <label for="f-usd">USD amount</label>
+            <input id="f-usd" type="number" min="0" step="any">
+          </div>
+          <div class="field">
+            <label for="f-usdMax">USD max</label>
+            <input id="f-usdMax" type="number" min="0" step="any">
+          </div>
+          <div class="field">
+            <label for="f-tokens">Tokens</label>
+            <input id="f-tokens" type="number" min="0" step="any">
+          </div>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="f-rating">Rating (0–5)</label>
+            <input id="f-rating" type="number" min="0" max="5" step="0.1">
+          </div>
+          <div class="field">
+            <label for="f-verification">Verification</label>
+            <select id="f-verification">
+              <option value="verified">Verified</option>
+              <option value="unverified">Unverified</option>
+              <option value="disputed">Disputed</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-outlook">Outlook</label>
+            <select id="f-outlook">
+              <option value="stable">Stable</option>
+              <option value="developing">Developing</option>
+              <option value="negative">Negative</option>
+              <option value="watch">Watch</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-login">Login</label>
+            <select id="f-login">
+              <option value="github">GitHub</option>
+              <option value="google">Google</option>
+              <option value="any">Any email</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-modeltype">Model class</label>
+            <select id="f-modeltype">
+              <option value="wide">Wide catalogue</option>
+              <option value="anthropic">Anthropic only</option>
+              <option value="chinese">Chinese models</option>
+              <option value="first-party">First-party</option>
+            </select>
+          </div>
+          <div class="fcheck" style="margin-top:1.4rem">
+            <input id="f-rated" type="checkbox">
+            <label for="f-rated">Rated (else shown NOT RATED)</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="f-duty">Duty (one per line)</label>
+          <textarea id="f-duty" rows="3"></textarea>
+          <p class="hint">e.g. GitHub OAuth grant / Anthropic models only</p>
+        </div>
+        <div class="field">
+          <label for="f-models">Models (one per line)</label>
+          <textarea id="f-models" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-tags">Tags (comma or line separated)</label>
+          <textarea id="f-tags" rows="2"></textarea>
+        </div>
+
+        <div class="field-grid">
+          <div class="field">
+            <label for="f-baseurl">Signup URL <b>*</b></label>
+            <input id="f-baseurl" type="url" placeholder="https://…" required>
+          </div>
+          <div class="field">
+            <label for="f-codeparam">Referral param</label>
+            <input id="f-codeparam" type="text" placeholder="aff">
+            <p class="hint">Query param name the gateway expects</p>
+          </div>
+          <div class="field">
+            <label for="f-refcode">Your referral code</label>
+            <input id="f-refcode" type="text" autocomplete="off">
+            <p class="hint">Appended as ?param=CODE to the signup URL</p>
+          </div>
+          <div class="fcheck" style="margin-top:1.4rem">
+            <input id="f-featured" type="checkbox">
+            <label for="f-featured">Featured (best-current-offer)</label>
+          </div>
+        </div>
+
+        <div class="aform-foot">
+          <button type="button" class="btn btn-2" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn">Save gateway</button>
+        </div>
+      </form>
+
+      <div class="publish">
+        <h3>Publish</h3>
+        <p>Drafts live in this browser only. To publish, download the merged <span class="mono">routers.json</span> below, commit it, and redeploy.</p>
+        <button class="btn btn-sm" id="exportBtn" type="button">Download routers.json</button>
+        <button class="linkish" id="clearDraft" type="button">Discard local draft</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const LS = "fetchrouter.v1";
+  const $  = (s, c) => (c || document).querySelector(s);
+  const $$ = (s, c) => Array.from((c || document).querySelectorAll(s));
+  const el = (t, a, ...kids) => {
+    const n = document.createElement(t);
+    if (a) for (const k in a) {
+      const v = a[k];
+      if (v == null) continue;
+      if (k === "class") n.className = v;
+      else if (k === "html") n.innerHTML = v;
+      else if (k === "onclick") n.addEventListener("click", v);
+      else if (k === "onchange") n.addEventListener("change", v);
+      else n.setAttribute(k, v);
+    }
+    for (const kid of kids) if (kid != null) n.append(kid.nodeType ? kid : document.createTextNode(kid));
+    return n;
+  };
+  const svgEl = (t, a, ...kids) => {
+    const n = document.createElementNS("http://www.w3.org/2000/svg", t);
+    if (a) for (const k in a) {
+      const v = a[k];
+      if (v == null) continue;
+      if (k === "class") n.setAttribute("class", v);
+      else n.setAttribute(k, v);
+    }
+    for (const kid of kids) if (kid != null) n.append(kid);
+    return n;
+  };
+
+  const VER_LABEL = { verified: "Verified", unverified: "Unverified", disputed: "Disputed" };
+  const OUT_TONE  = { stable: "ok", developing: "warn", negative: "bad", watch: "warn" };
+  const MT_LABEL  = { wide: "Wide catalogue", anthropic: "Anthropic only", chinese: "Chinese models", "first-party": "First-party" };
+  const LOGIN_LABEL = { github: "GitHub", google: "Google", any: "Any email" };
+
+  let base = [];
+  let overlay = { added: [], updated: {}, deleted: [] };
+  let data = [];
+  let state = { q: "", cat: "all", mt: "all", ver: "all", sort: "best" };
+  let editingId = null;
+  let toastTimer = null;
+
+  const today = () => new Date().toISOString().slice(0, 10);
+
+  /* ---------- data ---------- */
+  function readOverlay() {
+    try {
+      const o = JSON.parse(localStorage.getItem(LS));
+      if (o && Array.isArray(o.added)) return { added: o.added, updated: o.updated || {}, deleted: o.deleted || [] };
+    } catch (e) {}
+    return { added: [], updated: {}, deleted: [] };
+  }
+  function saveOverlay() {
+    localStorage.setItem(LS, JSON.stringify(overlay));
+    updateDraftPill();
+  }
+  function isDraft() {
+    return overlay.added.length > 0 || Object.keys(overlay.updated).length > 0 || overlay.deleted.length > 0;
+  }
+  function applyOverlay() {
+    let list = base.filter(r => !overlay.deleted.includes(r.id));
+    list = list.map(r => (overlay.updated[r.id] ? Object.assign({}, r, overlay.updated[r.id]) : r));
+    const ids = new Set(list.map(r => r.id));
+    list = list.concat(overlay.added.filter(r => !ids.has(r.id)));
+    data = list;
+  }
+
+  /* ---------- helpers ---------- */
+  const num = n => (n == null ? "" : Number(n).toLocaleString());
+  function fmtCount(n) {
+    if (n == null) return "";
+    if (n >= 1e6) return (n / 1e6).toLocaleString(undefined, { maximumFractionDigits: 1 }) + "M";
+    if (n >= 1000) return Math.round(n / 1000) + "k";
+    return String(n);
+  }
+  function creditText(r) {
+    const d = r.declared || {};
+    if (d.kind === "usd") {
+      let t = "$" + num(d.usd);
+      if (d.usdMax != null && d.usdMax > 0 && d.usdMax !== d.usd) t += "–$" + num(d.usdMax);
+      return t;
+    }
+    if (d.kind === "tokens") return fmtCount(d.tokens) + " tokens";
+    return "Unstated";
+  }
+  function creditRank(r) {
+    const d = r.declared || {};
+    if (d.kind === "usd") return d.usdMax != null ? d.usdMax : d.usd || 0;
+    if (d.kind === "tokens") return (d.tokens || 0) / 100000 * 3;
+    return 0;
+  }
+  function refUrl(r) {
+    let u = r.baseUrl || "";
+    const p = r.codeParam, c = (r.refCode || "").trim();
+    if (p && c) u += (/\?/.test(u) ? "&" : "?") + p + "=" + encodeURIComponent(c);
+    return u;
+  }
+  function toast(msg) {
+    const t = $("#toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
+  }
+  function copyText(t) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(t).then(() => true, () => false);
+    }
+    const ta = document.createElement("textarea");
+    ta.value = t; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.append(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch (e) {}
+    ta.remove();
+    return Promise.resolve(ok);
+  }
+  const uid = () => "r" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+
+  /* ---------- sort / filter ---------- */
+  function sortList(list, mode) {
+    const arr = list.slice();
+    if (mode === "name") return arr.sort((a, b) => a.name.localeCompare(b.name));
+    if (mode === "credit") return arr.sort((a, b) => creditRank(b) - creditRank(a));
+    arr.sort((a, b) => {
+      if (!!a.featured !== !!b.featured) return a.featured ? -1 : 1;
+      const ra = a.rated ? 1 : 0, rb = b.rated ? 1 : 0;
+      if (ra !== rb) return rb - ra;
+      if (a.rated && b.rated && a.rating !== b.rating) return b.rating - a.rating;
+      return creditRank(b) - creditRank(a);
+    });
+    return arr;
+  }
+  function visible() {
+    const q = state.q.trim().toLowerCase();
+    let list = data.filter(r => {
+      if (state.cat !== "all" && r.category !== state.cat) return false;
+      if (state.mt !== "all" && r.modelType !== state.mt) return false;
+      if (state.ver !== "all" && r.verification !== state.ver) return false;
+      if (q) {
+        const hay = [r.name, r.category, r.description, (r.models || []).join(" "), (r.tags || []).join(" ")].join(" ").toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+    return sortList(list, state.sort);
+  }
+
+  /* ---------- rendering ---------- */
+  function card(r, i) {
+    const ver = r.verification || "unverified";
+    const vc = ver === "verified" ? "v-ok" : ver === "disputed" ? "v-bad" : "v-warn";
+    const tone = OUT_TONE[r.outlook] || "";
+    const u = refUrl(r);
+    const ratings = [];
+    if (r.rated) {
+      ratings.push(el("span", { class: "rating", "aria-label": "Rated " + r.rating + " out of 5" },
+        svgEl("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }, svgEl("path", { d: "M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z" })),
+        r.rating.toFixed(1)
+      ));
+    } else {
+      ratings.push(el("span", { class: "rating nr" }, "NOT RATED"));
+    }
+
+    const a = el("article", { class: "card" + (r.featured ? " featured" : "") });
+    a.dataset.id = r.id;
+    a.append(
+      el("div", { class: "card-top" },
+        el("span", { class: "card-idx mono" }, String(i + 1).padStart(2, "0")),
+        el("div", { class: "card-titles" },
+          el("h3", {}, r.name),
+          el("span", { class: "cat" }, r.category || "Gateway")
+        ),
+        el("div", { class: "card-badges" },
+          r.featured ? el("span", { class: "badge feat" }, "Featured") : null,
+          el("span", { class: "outlook " + tone }, r.outlook || "—")
+        )
+      ),
+      el("div", { class: "card-main" },
+        el("div", {},
+          el("span", { class: "credit-amt" }, creditText(r)),
+          el("span", { class: "credit-lab" }, "signup credit")
+        ),
+        el("span", { class: "verdict " + vc }, ver === "verified" ? "✓ Verified" : ver === "disputed" ? "! Disputed" : "? Unverified")
+      ),
+      el("p", { class: "desc" }, r.description || ""),
+      el("div", { class: "meta-grid" },
+        el("div", { class: "meta-it" }, el("span", { class: "m-label" }, "Login"), el("span", { class: "m-val" }, LOGIN_LABEL[r.login] || r.login || "—")),
+        el("div", { class: "meta-it" }, el("span", { class: "m-label" }, "Models"), el("span", { class: "m-val" }, MT_LABEL[r.modelType] || r.modelType || "—")),
+        el("div", { class: "meta-it" }, el("span", { class: "m-label" }, "Checked"), el("span", { class: "m-val" }, r.lastReview || today()))
+      ),
+      (r.models && r.models.length ? el("div", { class: "models" }, el("h4", {}, "Models"), el("div", { class: "chips" }, ...r.models.map(m => el("span", { class: "chip" }, m)))) : null),
+      (r.duty && r.duty.length ? el("div", {}, el("div", { class: "duty-title" }, "Cost of the click"), el("ul", { class: "duty" }, ...r.duty.map(d => el("li", {}, d)))) : null),
+      (r.tags && r.tags.length ? el("div", { class: "tags" }, ...r.tags.map(t => el("span", { class: "tag" }, t))) : null),
+      el("div", { class: "card-foot" },
+        ...ratings,
+        el("button", { type: "button", class: "btn btn-sm btn-2", "data-copy": r.id }, "Copy link"),
+        (u
+          ? el("a", { class: "btn btn-sm", href: u, target: "_blank", rel: "noopener sponsored" }, "Get credit", el("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }, el("path", { d: "M7 17L17 7M8 7h9v9" })))
+          : null)
+      )
+    );
+    return a;
+  }
+  function render() {
+    const list = visible();
+    const grid = $("#boardGrid");
+    grid.innerHTML = "";
+    $("#totalCount").textContent = data.length;
+    $("#resultCount").textContent = list.length;
+    $("#empty").hidden = list.length > 0;
+    const frag = document.createDocumentFragment();
+    list.forEach((r, i) => frag.append(card(r, i)));
+    grid.append(frag);
+  }
+  function buildControls() {
+    const cats = Array.from(new Set(data.map(r => r.category).filter(Boolean))).sort();
+    const mts = Array.from(new Set(data.map(r => r.modelType).filter(Boolean))).sort();
+    const catSel = $("#fCat"); catSel.innerHTML = ""; catSel.append(new Option("All", "all"));
+    cats.forEach(c => catSel.append(new Option(c, c)));
+    const mtSel = $("#fMt"); mtSel.innerHTML = ""; mtSel.append(new Option("All", "all"));
+    mts.forEach(m => mtSel.append(new Option(MT_LABEL[m] || m, m)));
+    const verSel = $("#fVer"); verSel.innerHTML = ""; verSel.append(new Option("All", "all"));
+    ["verified", "unverified", "disputed"].forEach(v => verSel.append(new Option(VER_LABEL[v], v)));
+  }
+  function updateHero() {
+    const verified = data.filter(r => r.verification === "verified").length;
+    const total = data.reduce((s, r) => {
+      const d = r.declared || {};
+      if (d.kind === "usd") return s + (d.usdMax != null ? d.usdMax : d.usd || 0);
+      return s;
+    }, 0);
+    $("#heroCount").textContent = data.length;
+    $("#heroVerified").textContent = verified;
+    $("#heroValue").textContent = total > 0 ? "$" + num(total) : "—";
+  }
+  function updateDraftPill() {
+    $("#draftPill").hidden = !isDraft();
+  }
+
+  /* ---------- admin ---------- */
+  function renderAdminList() {
+    const box = $("#adminList");
+    box.innerHTML = "";
+    const sorted = data.slice().sort((a, b) => a.name.localeCompare(b.name));
+    sorted.forEach(r => {
+      box.append(el("div", { class: "alist-row" },
+        el("div", { class: "alist-id" },
+          el("b", {}, r.name),
+          el("span", {}, VER_LABEL[r.verification] || r.verification)
+        ),
+        el("div", { class: "alist-actions" },
+          el("button", { type: "button", class: "linkish", onclick: () => startEdit(r.id) }, "Edit"),
+          el("button", { type: "button", class: "linkish danger", onclick: () => askDelete(r.id) }, "Delete")
+        )
+      ));
+    });
+  }
+  function fillForm(r) {
+    const d = r.declared || {};
+    $("#f-name").value = r.name || "";
+    $("#f-category").value = r.category || "";
+    $("#f-desc").value = r.description || "";
+    $("#f-kind").value = d.kind || "unstated";
+    $("#f-usd").value = d.usd != null ? d.usd : "";
+    $("#f-usdMax").value = d.usdMax != null ? d.usdMax : "";
+    $("#f-tokens").value = d.tokens != null ? d.tokens : "";
+    $("#f-note").value = d.note || "";
+    $("#f-rating").value = r.rating != null ? r.rating : "";
+    $("#f-rated").checked = !!r.rated;
+    $("#f-verification").value = r.verification || "unverified";
+    $("#f-outlook").value = r.outlook || "stable";
+    $("#f-login").value = r.login || "any";
+    $("#f-modeltype").value = r.modelType || "wide";
+    $("#f-duty").value = (r.duty || []).join("\n");
+    $("#f-models").value = (r.models || []).join("\n");
+    $("#f-tags").value = (r.tags || []).join(", ");
+    $("#f-baseurl").value = r.baseUrl || "";
+    $("#f-codeparam").value = r.codeParam || "";
+    $("#f-refcode").value = r.refCode || "";
+    $("#f-last").value = r.lastReview || today();
+    $("#f-featured").checked = !!r.featured;
+  }
+  function clearForm() {
+    fillForm({ declared: {} });
+    $("#f-name").value = ""; $("#f-category").value = ""; $("#f-desc").value = "";
+    $("#f-note").value = ""; $("#f-rating").value = ""; $("#f-rated").checked = false;
+    $("#f-duty").value = ""; $("#f-models").value = ""; $("#f-tags").value = "";
+    $("#f-baseurl").value = ""; $("#f-codeparam").value = ""; $("#f-refcode").value = "";
+    $("#f-last").value = today(); $("#f-featured").checked = false;
+  }
+  function readForm() {
+    const val = id => $("#" + id).value.trim();
+    const lines = id => $("#" + id).value.split(/\n/).map(s => s.trim()).filter(Boolean);
+    const commaLines = id => $("#" + id).value.split(/[,\n]/).map(s => s.trim()).filter(Boolean);
+    const fNum = id => {
+      const v = $("#" + id).value.trim();
+      if (v === "") return null;
+      const n = parseFloat(v);
+      return isNaN(n) ? null : n;
+    };
+    const r = {
+      id: editingId || "new",
+      name: val("f-name"),
+      category: val("f-category"),
+      description: val("f-desc"),
+      declared: {
+        kind: val("f-kind") || "unstated",
+        usd: fNum("f-usd"),
+        usdMax: fNum("f-usdMax"),
+        tokens: fNum("f-tokens"),
+        note: val("f-note")
+      },
+      rating: fNum("f-rating") || 0,
+      rated: $("#f-rated").checked,
+      verification: val("f-verification") || "unverified",
+      outlook: val("f-outlook") || "stable",
+      login: val("f-login") || "any",
+      modelType: val("f-modeltype") || "wide",
+      duty: lines("f-duty"),
+      models: lines("f-models"),
+      tags: commaLines("f-tags"),
+      baseUrl: val("f-baseurl"),
+      codeParam: val("f-codeparam"),
+      refCode: val("f-refcode"),
+      lastReview: val("f-last") || today(),
+      featured: $("#f-featured").checked
+    };
+    return r;
+  }
+  function startNew() {
+    editingId = null;
+    clearForm();
+    $("#formTitle").textContent = "Add gateway";
+    $("#dupBtn").hidden = true;
+    $("#delBtn").hidden = true;
+    $("#f-name").focus();
+  }
+  function startEdit(id) {
+    const r = data.find(x => x.id === id);
+    if (!r) return;
+    editingId = id;
+    fillForm(r);
+    $("#formTitle").textContent = "Edit gateway";
+    $("#dupBtn").hidden = false;
+    $("#delBtn").hidden = false;
+    $("#adminForm").scrollIntoView({ block: "start", behavior: "smooth" });
+  }
+  function askDelete(id) {
+    const r = data.find(x => x.id === id);
+    if (!r) return;
+    if (!confirm("Delete " + r.name + "? This is local-only until you export and commit.")) return;
+    if (overlay.added.some(a => a.id === id)) {
+      overlay.added = overlay.added.filter(a => a.id !== id);
+      delete overlay.updated[id];
+    } else {
+      overlay.deleted.push(id);
+    }
+    saveOverlay();
+    applyOverlay();
+    render();
+    renderAdminList();
+    if (editingId === id) startNew();
+    toast("Deleted from local draft");
+  }
+  function openAdmin() {
+    $("#admin").hidden = false;
+    document.body.classList.add("no-scroll");
+    renderAdminList();
+    if (!editingId) startNew();
+    $("#adminForm").scrollIntoView({ block: "nearest" });
+  }
+  function closeAdmin() {
+    $("#admin").hidden = true;
+    document.body.classList.remove("no-scroll");
+    if (location.hash === "#admin") history.replaceState(null, "", "#top");
+  }
+  function syncAdmin() {
+    if (location.hash === "#admin") openAdmin();
+    else if (!$("#admin").hidden) closeAdmin();
+  }
+
+  /* ---------- events ---------- */
+  $("#q").addEventListener("input", e => { state.q = e.target.value; render(); });
+  $("#fCat").addEventListener("change", e => { state.cat = e.target.value; render(); });
+  $("#fMt").addEventListener("change", e => { state.mt = e.target.value; render(); });
+  $("#fVer").addEventListener("change", e => { state.ver = e.target.value; render(); });
+  $("#fSort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+  $("#resetBtn").addEventListener("click", () => {
+    state = { q: "", cat: "all", mt: "all", ver: "all", sort: "best" };
+    $("#q").value = ""; $("#fCat").value = "all"; $("#fMt").value = "all"; $("#fVer").value = "all"; $("#fSort").value = "best";
+    render();
+  });
+  $("#boardGrid").addEventListener("click", e => {
+    const btn = e.target.closest("[data-copy]");
+    if (!btn) return;
+    const r = data.find(x => x.id === btn.getAttribute("data-copy"));
+    if (!r) return;
+    copyText(refUrl(r)).then(ok => {
+      if (ok) toast(r.refCode ? "Referral link copied" : "Base link copied — no referral code set for this gateway");
+      else toast("Copy failed — select and copy the link manually");
+    });
+  });
+  $("#newBtn").addEventListener("click", startNew);
+  $("#dupBtn").addEventListener("click", () => {
+    const r = data.find(x => x.id === editingId);
+    if (!r) return;
+    const copy = Object.assign(JSON.parse(JSON.stringify(r)), { id: uid(), name: r.name + " (copy)" });
+    overlay.added.push(copy);
+    saveOverlay();
+    applyOverlay();
+    render();
+    renderAdminList();
+    startEdit(copy.id);
+    toast("Duplicated to local draft");
+  });
+  $("#delBtn").addEventListener("click", () => { if (editingId) askDelete(editingId); });
+  $("#cancelBtn").addEventListener("click", startNew);
+  $("#adminClose").addEventListener("click", closeAdmin);
+  $("#adminBack").addEventListener("click", closeAdmin);
+  $("#adminForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const r = readForm();
+    if (!r.name || !r.baseUrl) { toast("Name and signup URL are required"); return; }
+    if (editingId) {
+      if (overlay.added.some(a => a.id === editingId)) {
+        overlay.added = overlay.added.map(a => a.id === editingId ? r : a);
+        delete overlay.updated[editingId];
+      } else {
+        overlay.updated[editingId] = r;
+      }
+    } else {
+      r.id = uid();
+      overlay.added.push(r);
+    }
+    saveOverlay();
+    applyOverlay();
+    render();
+    renderAdminList();
+    toast("Saved to local draft");
+    startNew();
+  });
+  $("#exportBtn").addEventListener("click", () => {
+    const payload = { version: 1, generated: today(), routers: data };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "routers.json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    toast("routers.json downloaded — commit and redeploy to publish");
+  });
+  $("#clearDraft").addEventListener("click", () => {
+    if (isDraft() && !confirm("Discard all local edits?")) return;
+    overlay = { added: [], updated: {}, deleted: [] };
+    localStorage.removeItem(LS);
+    applyOverlay();
+    render();
+    renderAdminList();
+    updateDraftPill();
+    toast("Local draft discarded");
+  });
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && !$("#admin").hidden) closeAdmin();
+  });
+  window.addEventListener("hashchange", syncAdmin);
+  document.addEventListener("click", e => {
+    const nav = e.target.closest(".top-nav a");
+    if (nav) {
+      $$(".top-nav a").forEach(x => x.classList.remove("on"));
+      nav.classList.add("on");
+    }
+  });
+
+  /* ---------- boot ---------- */
+  async function load() {
+    let ok = true;
+    try {
+      const res = await fetch("routers.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(String(res.status));
+      const json = await res.json();
+      base = Array.isArray(json) ? json : json.routers || [];
+    } catch (err) {
+      ok = false;
+    }
+    if (!ok) {
+      $("#boardGrid").innerHTML = "";
+      $("#empty").hidden = false;
+      $("#empty").innerHTML = "<p>Could not load routers.json. Open this page through a local server (<span class=\"mono\">npx serve</span> or <span class=\"mono\">python -m http.server</span>) or deploy it — fetching the data file is blocked on <span class=\"mono\">file://</span>.</p>";
+      return;
+    }
+    overlay = readOverlay();
+    applyOverlay();
+    buildControls();
+    render();
+    updateHero();
+    updateDraftPill();
+    syncAdmin();
+  }
+  load();
+})();
+</script>
+</body>
+</html>

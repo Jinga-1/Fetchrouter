@@ -1,0 +1,417 @@
+{
+  "version": 1,
+  "generated": "2026-08-31",
+  "routers": [
+    {
+      "id": "agent-router",
+      "name": "Agent Router",
+      "category": "API router",
+      "description": "$100 to $200 on GitHub signup, depending on which referral link you arrive through. Coding agents only: requests must originate from Claude Code, Codex, Cline or similar, and a plain chat client is refused.",
+      "declared": {
+        "kind": "usd",
+        "usd": 100,
+        "usdMax": 200,
+        "tokens": null,
+        "note": "Amount depends on the referral link used."
+      },
+      "rating": 4.3,
+      "verification": "verified",
+      "rated": true,
+      "outlook": "stable",
+      "login": "github",
+      "modelType": "wide",
+      "duty": [
+        "GitHub OAuth grant",
+        "Coding agents only — chat clients refused"
+      ],
+      "models": [
+        "GPT-5.6 Sol",
+        "Claude Opus 4.8",
+        "Claude Opus 5"
+      ],
+      "tags": [
+        "$100–$200",
+        "GitHub login only",
+        "coding agents only"
+      ],
+      "baseUrl": "https://agentrouter.org/register?aff=4xtB",
+      "codeParam": "aff",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": true
+    },
+    {
+      "id": "bai",
+      "name": "Bai",
+      "category": "Chat gateway",
+      "description": "300,000 tokens on signup through a referral link. The free plan's model list is short, but the models on it are current.",
+      "declared": {
+        "kind": "tokens",
+        "usd": null,
+        "usdMax": null,
+        "tokens": 300000,
+        "note": "Granted as tokens, not as a dollar balance."
+      },
+      "rating": 4.2,
+      "verification": "verified",
+      "rated": true,
+      "outlook": "stable",
+      "login": "google",
+      "modelType": "wide",
+      "duty": [
+        "Google OAuth grant",
+        "Referral link required for the full grant",
+        "Free plan limits the model list"
+      ],
+      "models": [
+        "GPT-5.6",
+        "Claude Opus 4.8",
+        "Gemini 3.6 Flash",
+        "DeepSeek V4",
+        "Grok 4.6"
+      ],
+      "tags": [
+        "300k tokens",
+        "glm-5.3",
+        "Google login",
+        "crypto accepted"
+      ],
+      "baseUrl": "https://chat.b.ai/chat?invite_code=2X3PPA",
+      "codeParam": "invite_code",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": true
+    },
+    {
+      "id": "xiaomi-mimo",
+      "name": "Xiaomi Mimo",
+      "category": "First-party platform",
+      "description": "$3 on register, plus $3 per referral up to thirty people. Small, but it is the only offer on this board served from a first-party vendor domain rather than a reseller.",
+      "declared": {
+        "kind": "usd",
+        "usd": 3,
+        "usdMax": null,
+        "tokens": null,
+        "note": "Referrals can add $3 each, up to thirty."
+      },
+      "rating": 4.2,
+      "verification": "verified",
+      "rated": true,
+      "outlook": "stable",
+      "login": "any",
+      "modelType": "wide",
+      "duty": [
+        "Email account",
+        "MiMo models only",
+        "$3 is the whole signup grant"
+      ],
+      "models": [
+        "MiMo-V2.5-Pro",
+        "MiMo-V2.5",
+        "MiMo-V2-Flash",
+        "MiMo-V2.5-ASR",
+        "MiMo-V2.5-TTS"
+      ],
+      "tags": [
+        "first-party domain",
+        "$3 per referral",
+        "up to 30 referrals"
+      ],
+      "baseUrl": "https://platform.xiaomimimo.com",
+      "codeParam": "ref",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": true
+    },
+    {
+      "id": "gorouter",
+      "name": "GoRouter",
+      "category": "API router",
+      "description": "$70 on signup, but only for GitHub accounts created before 2026. Anthropic models only. A $40 referral bonus is advertised on top of the signup grant.",
+      "declared": {
+        "kind": "usd",
+        "usd": 70,
+        "usdMax": null,
+        "tokens": null,
+        "note": ""
+      },
+      "rating": 4.1,
+      "verification": "verified",
+      "rated": true,
+      "outlook": "stable",
+      "login": "github",
+      "modelType": "anthropic",
+      "duty": [
+        "GitHub OAuth grant",
+        "GitHub account must predate 2026",
+        "Anthropic models only"
+      ],
+      "models": [
+        "Claude Opus 5",
+        "Claude Opus 4.8"
+      ],
+      "tags": [
+        "$70 on signup",
+        "$40 per referral",
+        "GitHub only"
+      ],
+      "baseUrl": "https://gorouter.app/sign-up?aff=HSJp",
+      "codeParam": "aff",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": true
+    },
+    {
+      "id": "bluesminds",
+      "name": "Bluesminds",
+      "category": "API router",
+      "description": "$100 welcome credit on GitHub signup, scaling upward with the age of the account. Routes 160-plus models through one OpenAI-compatible endpoint; some of them are intermittently unavailable.",
+      "declared": {
+        "kind": "usd",
+        "usd": 100,
+        "usdMax": null,
+        "tokens": null,
+        "note": "Base grant; scales upward with GitHub account age."
+      },
+      "rating": 3.9,
+      "verification": "verified",
+      "rated": true,
+      "outlook": "negative",
+      "login": "github",
+      "modelType": "wide",
+      "duty": [
+        "GitHub OAuth grant",
+        "Grant scales with account age",
+        "Some routed models intermittently unavailable"
+      ],
+      "models": [
+        "gpt-5.6-sol",
+        "gpt-5.6-terra",
+        "gpt-5.6-luna",
+        "gpt-5.5",
+        "gpt-5.3-codex",
+        "deepseek-v4-pro",
+        "kimi-k2.5",
+        "gpt-4o"
+      ],
+      "tags": [
+        "$100 base credit",
+        "160+ models",
+        "OpenAI-compatible"
+      ],
+      "baseUrl": "https://api.bluesminds.com/sign-up?aff=xfq3",
+      "codeParam": "aff",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": true
+    },
+    {
+      "id": "justdowork",
+      "name": "JustDoWork",
+      "category": "API router",
+      "description": "$100 on signup with a $20 daily check-in on top. Anthropic models only. Neither the signup amount nor the daily top-up could be confirmed away from affiliate sources.",
+      "declared": {
+        "kind": "usd",
+        "usd": 100,
+        "usdMax": null,
+        "tokens": null,
+        "note": "A further $20 per day is advertised for checking in."
+      },
+      "rating": 3.4,
+      "verification": "unverified",
+      "rated": true,
+      "outlook": "developing",
+      "login": "github",
+      "modelType": "anthropic",
+      "duty": [
+        "GitHub OAuth grant",
+        "Anthropic models only",
+        "Daily check-in required for the $20"
+      ],
+      "models": [
+        "claude-opus-5",
+        "claude-opus-5-thinking",
+        "claude-opus-4-8",
+        "claude-opus-4-8-thinking"
+      ],
+      "tags": [
+        "$100 on signup",
+        "$20 daily check-in",
+        "GitHub only"
+      ],
+      "baseUrl": "https://api.justwoker.icu/register",
+      "codeParam": "aff",
+      "refCode": "NMS3",
+      "lastReview": "2026-08-31",
+      "featured": true
+    },
+    {
+      "id": "tabiai",
+      "name": "TaBiAi",
+      "category": "API router",
+      "description": "$120 on GitHub signup, Anthropic models only. Reports of the amount conflict with one another, so the board treats the figure as disputed rather than merely unconfirmed.",
+      "declared": {
+        "kind": "usd",
+        "usd": 120,
+        "usdMax": null,
+        "tokens": null,
+        "note": "Reports of the amount conflict."
+      },
+      "rating": 3.9,
+      "verification": "disputed",
+      "rated": true,
+      "outlook": "negative",
+      "login": "github",
+      "modelType": "anthropic",
+      "duty": [
+        "GitHub OAuth grant",
+        "Anthropic models only",
+        "Reported amount is disputed"
+      ],
+      "models": [
+        "claude-opus-4-8",
+        "claude-opus-4-8-thinking",
+        "claude-opus-5",
+        "claude-opus-5-thinking"
+      ],
+      "tags": [
+        "$120 on signup",
+        "GitHub signup",
+        "disputed amount"
+      ],
+      "baseUrl": "https://tabitoken.com/sign-up?aff=8Fqe",
+      "codeParam": "aff",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": true
+    },
+    {
+      "id": "see-kai",
+      "name": "See Kai",
+      "category": "API router",
+      "description": "A $200 signup credit is advertised against a broad chat-model list. Neither the amount nor the catalogue could be confirmed against any source that was not itself an affiliate link.",
+      "declared": {
+        "kind": "usd",
+        "usd": 200,
+        "usdMax": null,
+        "tokens": null,
+        "note": "Advertised figure; no independent confirmation found."
+      },
+      "rating": 2.2,
+      "verification": "unverified",
+      "rated": true,
+      "outlook": "negative",
+      "login": "any",
+      "modelType": "wide",
+      "duty": [
+        "Email account",
+        "Chat models, not coding agents",
+        "Amount unconfirmed"
+      ],
+      "models": [
+        "gpt-5.6-sol",
+        "claude-opus-5",
+        "claude-fable-5",
+        "claude-sonnet-5",
+        "claude-opus-4-8",
+        "gemini-3-6-flash",
+        "grok-4-6",
+        "deepseek-v4-pro",
+        "glm-5-2"
+      ],
+      "tags": [
+        "$200 advertised",
+        "chat models",
+        "unverified"
+      ],
+      "baseUrl": "https://tabitoken.com/sign-up?aff=8Fqe",
+      "codeParam": "aff",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": false
+    },
+    {
+      "id": "hcnsec",
+      "name": "Hcnsec",
+      "category": "API router",
+      "description": "A large grant on register, reported as thousands of credits, with no unit ever stated. Chinese models only. The amount could not be established in any form, so no grade is implied.",
+      "declared": {
+        "kind": "unstated",
+        "usd": null,
+        "usdMax": null,
+        "tokens": null,
+        "note": "Reported as thousands of credits with no unit stated anywhere."
+      },
+      "rating": 2.6,
+      "verification": "disputed",
+      "rated": false,
+      "outlook": "watch",
+      "login": "any",
+      "modelType": "chinese",
+      "duty": [
+        "Email account",
+        "Chinese models only",
+        "Amount never stated in any unit"
+      ],
+      "models": [
+        "DeepSeek-V4-Pro",
+        "DeepSeek-V4-Flash",
+        "kimi-k3",
+        "MiniMax-M3",
+        "Qwen3.8-27B",
+        "glm-4.5-air",
+        "step-3.7-flash"
+      ],
+      "tags": [
+        "Chinese models only",
+        "amount never stated",
+        "disputed"
+      ],
+      "baseUrl": "https://api.hcnsec.cn/sign-up?aff=1YRy",
+      "codeParam": "aff",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": false
+    },
+    {
+      "id": "kktoken",
+      "name": "KKToken",
+      "category": "API router",
+      "description": "Models, pricing and the signup grant all sit behind the login wall, so there is nothing to check until you have already created the account. No grade is implied.",
+      "declared": {
+        "kind": "unstated",
+        "usd": null,
+        "usdMax": null,
+        "tokens": null,
+        "note": "Grant amount is only visible after signup."
+      },
+      "rating": 2.5,
+      "verification": "unverified",
+      "rated": false,
+      "outlook": "developing",
+      "login": "any",
+      "modelType": "wide",
+      "duty": [
+        "Email account",
+        "Catalogue and amount only visible after signup",
+        "Referral access"
+      ],
+      "models": [
+        "claude-opus-5",
+        "claude-opus-5-thinking",
+        "claude-opus-4-8",
+        "claude-opus-4-8-thinking"
+      ],
+      "tags": [
+        "referral access",
+        "amount hidden until signup",
+        "unverified"
+      ],
+      "baseUrl": "https://kktoken.cc/sign-up?aff=Djv4",
+      "codeParam": "aff",
+      "refCode": "",
+      "lastReview": "2026-08-31",
+      "featured": false
+    }
+  ]
+}
