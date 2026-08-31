@@ -169,8 +169,12 @@ select:focus-visible{border-color:var(--green)}
   box-shadow:0 10px 28px -18px rgba(0,0,0,.9)}
 .card.featured{border-color:color-mix(in srgb,var(--green) 55%,var(--line));
   background:linear-gradient(180deg,color-mix(in srgb,var(--green) 6%,var(--card)),var(--card))}
-.card-top{display:flex; align-items:flex-start; gap:.75rem}
-.card-idx{font-size:.6875rem; color:var(--fg-3); padding-top:.2rem; flex:none}
+.card-top{display:flex; align-items:center; gap:.75rem}
+.logo{width:2.75rem;height:2.75rem;flex:none;border-radius:10px;background:var(--sunk);
+  border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;
+  overflow:hidden;color:var(--fg-2);font-weight:800;font-size:1.0625rem;text-transform:uppercase}
+.logo img{width:100%;height:100%;object-fit:contain;padding:.3rem}
+.logo.nologo{letter-spacing:.04em}
 .card-titles{flex:1; min-width:0}
 .card-titles h3{font-size:1.125rem; letter-spacing:-.02em}
 .card-titles .cat{display:block; font-family:var(--m); font-size:.625rem; letter-spacing:.14em;
@@ -179,6 +183,20 @@ select:focus-visible{border-color:var(--green)}
 .badge{font-family:var(--m); font-size:.625rem; letter-spacing:.12em; text-transform:uppercase;
   padding:.22rem .5rem; border-radius:6px; border:1px solid var(--line-2); color:var(--fg-2)}
 .badge.feat{color:var(--green-ink); background:var(--green); border-color:var(--green); font-weight:700}
+.badge.live{color:var(--green); border-color:color-mix(in srgb,var(--green) 42%,transparent); background:color-mix(in srgb,var(--green) 8%,transparent)}
+.badge.stale{color:var(--amber); border-color:color-mix(in srgb,var(--amber) 42%,transparent); background:color-mix(in srgb,var(--amber) 8%,transparent)}
+.badge.dead{color:var(--red); border-color:color-mix(in srgb,var(--red) 45%,transparent); background:color-mix(in srgb,var(--red) 8%,transparent)}
+.card.dead{opacity:.6; filter:saturate(.5)}
+.deadnote{font-family:var(--m); font-size:.6875rem; color:var(--red); border:1px dashed color-mix(in srgb,var(--red) 42%,transparent);
+  background:color-mix(in srgb,var(--red) 6%,transparent); border-radius:8px; padding:.5rem .7rem; line-height:1.55}
+.statusline{font-family:var(--m); font-size:.6875rem; color:var(--fg-3); margin:0 0 .9rem; display:flex; gap:.4rem .9rem; flex-wrap:wrap; align-items:center}
+.statusline b{color:var(--fg-2); font-weight:500}
+.legend{display:inline-flex; gap:1rem; align-items:center}
+.legend span{display:inline-flex; align-items:center; gap:.35rem}
+.legend i{width:7px; height:7px; border-radius:99px; background:var(--fg-3); display:inline-block}
+.legend i.ok{background:var(--green)}
+.legend i.warn{background:var(--amber)}
+.legend i.bad{background:var(--red)}
 .outlook{display:inline-flex; align-items:center; gap:.35rem; font-family:var(--m); font-size:.625rem;
   letter-spacing:.1em; text-transform:uppercase; color:var(--fg-3)}
 .outlook::before{content:""; width:7px; height:7px; border-radius:99px; background:var(--fg-3)}
@@ -299,6 +317,7 @@ select:focus-visible{border-color:var(--green)}
     </a>
     <nav class="top-nav" aria-label="Primary">
       <a href="#board">Board</a>
+      <a href="docs.html">Guide</a>
       <a href="#how">How to read a card</a>
       <a id="draftPill" class="trackpill" href="#admin" hidden>Local draft</a>
     </nav>
@@ -354,6 +373,7 @@ select:focus-visible{border-color:var(--green)}
           </select>
         </div>
       </div>
+      <p class="statusline" id="statusline"></p>
       <p class="count" role="status"><b id="resultCount">0</b> of <span id="totalCount">0</span> gateways shown</p>
       <div id="boardGrid" class="grid" aria-live="polite"></div>
       <div id="empty" class="empty" hidden>
@@ -367,6 +387,7 @@ select:focus-visible{border-color:var(--green)}
     <div class="wrap">
       <div class="board-head">
         <h2>How to read a card</h2>
+        <p>A quick version of the conventions below — <a href="docs.html">read the full guide</a> for search, filters, admin, and publishing.</p>
       </div>
       <div class="how-grid">
         <div>
@@ -390,7 +411,7 @@ select:focus-visible{border-color:var(--green)}
   <div class="wrap">
     <p class="mono">FETCHROUTER — AN AFFILIATE BOARD</p>
     <p>FetchRouter earns from signups reached through this page. Figures are seeded from the Router Watch board on 2026-08-31 and are third-party reported, not FetchRouter&rsquo;s own verification. Last-checked dates are the owner&rsquo;s to maintain. A gateway marked <b>disputed</b> or <b>unverified</b> is ranked accordingly — even though the site earns from the click either way.</p>
-    <p class="foot-actions"><a href="#top">Back to top</a> &middot; <a href="#admin">Admin</a></p>
+    <p class="foot-actions"><a href="#top">Back to top</a> &middot; <a href="docs.html">Guide</a> &middot; <a href="#admin">Admin</a></p>
   </div>
 </footer>
 
@@ -441,6 +462,11 @@ select:focus-visible{border-color:var(--green)}
         <div class="field">
           <label for="f-desc">Description</label>
           <textarea id="f-desc" rows="3"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-setup">Setup guide (shown on the Guide page)</label>
+          <textarea id="f-setup" rows="4"></textarea>
+          <p class="hint">How a visitor signs up and configures this gateway — key, base URL, Claude Code / Codex / Cline notes.</p>
         </div>
 
         <div class="field-grid">
@@ -686,6 +712,32 @@ select:focus-visible{border-color:var(--green)}
   }
   const uid = () => "r" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 
+  /* ---------- logos ---------- */
+  function domainOf(url) {
+    try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return ""; }
+  }
+  function logoEl(r) {
+    const dom = domainOf(r.baseUrl);
+    const tile = el("span", { class: "logo", "aria-hidden": "true" });
+    const fallback = () => {
+      tile.textContent = (r.name || "?").charAt(0).toUpperCase();
+      tile.classList.add("nologo");
+    };
+    if (!dom) { fallback(); return tile; }
+    const im = document.createElement("img");
+    im.alt = "";
+    im.loading = "lazy";
+    im.referrerPolicy = "no-referrer";
+    im.src = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(dom) + "&sz=64";
+    let tries = 0;
+    im.addEventListener("error", () => {
+      if (tries === 0) { tries = 1; im.src = "https://icon.horse/icon/" + encodeURIComponent(dom); }
+      else fallback();
+    });
+    tile.append(im);
+    return tile;
+  }
+
   /* ---------- sort / filter ---------- */
   function sortList(list, mode) {
     const arr = list.slice();
@@ -716,11 +768,22 @@ select:focus-visible{border-color:var(--green)}
   }
 
   /* ---------- rendering ---------- */
+  const STALE_MS = 4 * 24 * 60 * 60 * 1000;
+  function healthChip(r) {
+    const h = r.health;
+    if (!h || !h.status) return null;
+    const age = h.checkedAt ? Date.now() - new Date(h.checkedAt).getTime() : Infinity;
+    if (h.status === "down") return el("span", { class: "badge dead" }, "● Offline");
+    if (age > STALE_MS) return el("span", { class: "badge stale" }, "● Stale");
+    return el("span", { class: "badge live" }, "● Live");
+  }
   function card(r, i) {
     const ver = r.verification || "unverified";
     const vc = ver === "verified" ? "v-ok" : ver === "disputed" ? "v-bad" : "v-warn";
     const tone = OUT_TONE[r.outlook] || "";
     const u = refUrl(r);
+    const health = r.health || null;
+    const down = health && health.status === "down";
     const ratings = [];
     if (r.rated) {
       ratings.push(el("span", { class: "rating", "aria-label": "Rated " + r.rating + " out of 5" },
@@ -731,16 +794,17 @@ select:focus-visible{border-color:var(--green)}
       ratings.push(el("span", { class: "rating nr" }, "NOT RATED"));
     }
 
-    const a = el("article", { class: "card" + (r.featured ? " featured" : "") });
+    const a = el("article", { class: "card" + (r.featured ? " featured" : "") + (down ? " dead" : "") });
     a.dataset.id = r.id;
     a.append(
       el("div", { class: "card-top" },
-        el("span", { class: "card-idx mono" }, String(i + 1).padStart(2, "0")),
+        logoEl(r),
         el("div", { class: "card-titles" },
           el("h3", {}, r.name),
-          el("span", { class: "cat" }, r.category || "Gateway")
+          el("span", { class: "cat" }, "№ " + String(i + 1).padStart(2, "0") + " · " + (r.category || "Gateway"))
         ),
         el("div", { class: "card-badges" },
+          healthChip(r),
           r.featured ? el("span", { class: "badge feat" }, "Featured") : null,
           el("span", { class: "outlook " + tone }, r.outlook || "—")
         )
@@ -752,6 +816,9 @@ select:focus-visible{border-color:var(--green)}
         ),
         el("span", { class: "verdict " + vc }, ver === "verified" ? "✓ Verified" : ver === "disputed" ? "! Disputed" : "? Unverified")
       ),
+      (down && health.checkedAt
+        ? el("p", { class: "deadnote" }, "Reported offline as of " + String(health.checkedAt).slice(0, 10) + " — treated as deprecated until the daily check clears it.")
+        : null),
       el("p", { class: "desc" }, r.description || ""),
       el("div", { class: "meta-grid" },
         el("div", { class: "meta-it" }, el("span", { class: "m-label" }, "Login"), el("span", { class: "m-val" }, LOGIN_LABEL[r.login] || r.login || "—")),
@@ -764,9 +831,11 @@ select:focus-visible{border-color:var(--green)}
       el("div", { class: "card-foot" },
         ...ratings,
         el("button", { type: "button", class: "btn btn-sm btn-2", "data-copy": r.id }, "Copy link"),
-        (u
-          ? el("a", { class: "btn btn-sm", href: u, target: "_blank", rel: "noopener sponsored" }, "Get credit", el("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }, el("path", { d: "M7 17L17 7M8 7h9v9" })))
-          : null)
+        (down
+          ? el("button", { type: "button", class: "btn btn-sm", disabled: true }, "Offline")
+          : (u
+            ? el("a", { class: "btn btn-sm", href: u, target: "_blank", rel: "noopener sponsored" }, "Get credit", el("svg", { viewBox: "0 0 24 24", "aria-hidden": "true" }, el("path", { d: "M7 17L17 7M8 7h9v9" })))
+            : null))
       )
     );
     return a;
@@ -806,6 +875,19 @@ select:focus-visible{border-color:var(--green)}
   function updateDraftPill() {
     $("#draftPill").hidden = !isDraft();
   }
+  function updateStatusLine(lastChecked) {
+    const box = $("#statusline");
+    const legend = el("span", { class: "legend" },
+      el("span", {}, el("i", { class: "ok" }), "live"),
+      el("span", {}, el("i", { class: "warn" }), "stale"),
+      el("span", {}, el("i", { class: "bad" }), "offline")
+    );
+    const text = lastChecked
+      ? el("span", {}, "Last auto-check: ", el("b", {}, lastChecked), " · refreshed daily by a scheduled action")
+      : el("span", {}, "Live status refreshed automatically every day — ", el("b", {}, "no check has run yet"));
+    box.innerHTML = "";
+    box.append(text, legend);
+  }
 
   /* ---------- admin ---------- */
   function renderAdminList() {
@@ -830,6 +912,7 @@ select:focus-visible{border-color:var(--green)}
     $("#f-name").value = r.name || "";
     $("#f-category").value = r.category || "";
     $("#f-desc").value = r.description || "";
+    $("#f-setup").value = r.setup || "";
     $("#f-kind").value = d.kind || "unstated";
     $("#f-usd").value = d.usd != null ? d.usd : "";
     $("#f-usdMax").value = d.usdMax != null ? d.usdMax : "";
@@ -873,6 +956,7 @@ select:focus-visible{border-color:var(--green)}
       name: val("f-name"),
       category: val("f-category"),
       description: val("f-desc"),
+      setup: val("f-setup"),
       declared: {
         kind: val("f-kind") || "unstated",
         usd: fNum("f-usd"),
@@ -1044,10 +1128,12 @@ select:focus-visible{border-color:var(--green)}
   /* ---------- boot ---------- */
   async function load() {
     let ok = true;
+    let lastChecked = null;
     try {
       const res = await fetch("routers.json", { cache: "no-store" });
       if (!res.ok) throw new Error(String(res.status));
       const json = await res.json();
+      lastChecked = json && !Array.isArray(json) ? json.lastChecked || null : null;
       base = Array.isArray(json) ? json : json.routers || [];
     } catch (err) {
       ok = false;
@@ -1064,6 +1150,7 @@ select:focus-visible{border-color:var(--green)}
     render();
     updateHero();
     updateDraftPill();
+    updateStatusLine(lastChecked);
     syncAdmin();
   }
   load();

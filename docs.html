@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FetchRouter Guide — How to use the board and set up every gateway</title>
+<meta name="description" content="How to use FetchRouter: search and read the board, and step-by-step setup for every AI gateway listed — sign up, get the API key, configure Claude Code, Codex or Cline.">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0b0d0e">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2334d399'/%3E%3Cpath d='M9 22V10h13M9 16h9' stroke='%230b0d0e' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#0b0d0e;
+  --bg-hdr:rgba(11,13,14,.82);
+  --card:#121517;
+  --card-2:#171b1e;
+  --sunk:#15191c;
+  --line:#22282b;
+  --line-2:#2d353a;
+  --fg:#e9edeb;
+  --fg-2:#98a3a5;
+  --fg-3:#6d787b;
+  --green:#34d399;
+  --green-dim:#1f9d76;
+  --green-ink:#07281e;
+  --amber:#e2b350;
+  --red:#f0736f;
+  --f:"Figtree",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --m:"JetBrains Mono",ui-monospace,"Courier New",monospace;
+  --r:14px;
+  --gut:clamp(1.1rem,4vw,2.5rem);
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%; scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--fg); font-family:var(--f); font-size:1rem;
+  line-height:1.6; -webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0; font-weight:800; letter-spacing:-.03em; line-height:1.12}
+p{margin:0}
+a{color:var(--green); text-decoration:none}
+a:hover{text-decoration:underline}
+:where(a,button,input,select,textarea,summary,[tabindex]):focus-visible{
+  outline:2px solid var(--green); outline-offset:2px; border-radius:6px;
+}
+[id]{scroll-margin-top:5.5rem}
+::selection{background:color-mix(in srgb,var(--green) 30%,transparent)}
+.mono{font-family:var(--m)}
+.wrap{max-width:64rem; margin:0 auto; padding:0 var(--gut)}
+.skip{position:absolute; left:.75rem; top:-3rem; z-index:90; background:var(--green); color:var(--green-ink);
+  padding:.6rem 1rem; border-radius:8px; font-weight:700; transition:top .18s var(--ease)}
+.skip:focus{top:.75rem}
+
+header.top{position:sticky; top:0; z-index:50; background:var(--bg-hdr);
+  backdrop-filter:blur(14px) saturate(1.4); border-bottom:1px solid var(--line)}
+.top-in{display:flex; align-items:center; gap:1.25rem; justify-content:space-between; padding:.85rem 0}
+.brand{display:flex; flex-direction:column; gap:.1rem; color:var(--fg)}
+.brand b{font-size:1.0625rem; font-weight:800; letter-spacing:-.025em; line-height:1.1}
+.brand span{font-family:var(--m); font-size:.625rem; letter-spacing:.16em; color:var(--fg-3); text-transform:uppercase}
+.top-nav{display:flex; align-items:center; gap:.35rem}
+.top-nav a{padding:.5rem .7rem; border-radius:8px; font-size:.875rem; font-weight:600; color:var(--fg-2)}
+.top-nav a:hover{color:var(--fg); background:var(--card-2); text-decoration:none}
+
+.doc-hero{border-bottom:1px solid var(--line); padding:clamp(3rem,8vw,5.5rem) 0 clamp(2.5rem,6vw,4rem);
+  text-align:center}
+.eyebrow{display:inline-flex; font-family:var(--m); font-size:.6875rem; letter-spacing:.22em; color:var(--green);
+  border:1px solid color-mix(in srgb,var(--green) 34%,transparent); background:color-mix(in srgb,var(--green) 8%,transparent);
+  padding:.4rem .75rem; border-radius:99px; margin-bottom:1.4rem}
+.doc-hero h1{font-size:clamp(2rem,5.4vw,3.4rem); letter-spacing:-.04em; max-width:22ch; margin:0 auto}
+.doc-hero .sub{color:var(--fg-2); max-width:46ch; margin:1rem auto 0; font-size:clamp(1rem,1.3vw,1.125rem)}
+
+.doc{padding:clamp(2.5rem,6vw,4rem) 0 clamp(3.5rem,8vw,5.5rem)}
+.toc{display:flex; flex-wrap:wrap; gap:.45rem; padding:0; margin:0 0 2.5rem; list-style:none;
+  border-bottom:1px solid var(--line); padding-bottom:1.25rem}
+.toc a{font-family:var(--m); font-size:.75rem; color:var(--fg-2); border:1px solid var(--line);
+  background:var(--card); border-radius:99px; padding:.4rem .8rem}
+.toc a:hover{color:var(--fg); border-color:var(--line-2); text-decoration:none}
+
+.sec{margin-bottom:3.5rem}
+.sec>h2{font-size:clamp(1.5rem,3.4vw,2.1rem); letter-spacing:-.035em; margin-bottom:1.25rem;
+  padding-bottom:.6rem; border-bottom:1px solid var(--line)}
+.sec>h2 .mono{display:inline-block; color:var(--green); font-size:.8125rem; letter-spacing:.14em;
+  margin-right:.6rem; vertical-align:.14em}
+.sec h3{font-size:1.0625rem; margin:2rem 0 .6rem; letter-spacing:-.02em}
+.sec p{color:var(--fg-2); max-width:62ch; margin:.5rem 0}
+.sec ul,.sec ol{color:var(--fg-2); margin:.5rem 0; padding-left:1.2rem; max-width:62ch}
+.sec li{margin:.3rem 0}
+.sec li::marker{color:var(--green)}
+.sec code{font-family:var(--m); font-size:.8125rem; color:var(--green);
+  background:color-mix(in srgb,var(--green) 8%,transparent); border:1px solid color-mix(in srgb,var(--green) 24%,transparent);
+  padding:.1rem .4rem; border-radius:6px}
+.sec pre{background:var(--sunk); border:1px solid var(--line); border-radius:10px; padding:1rem 1.15rem;
+  overflow-x:auto; margin:.75rem 0}
+.sec pre code{background:none; border:0; padding:0; color:var(--fg-2); display:block; line-height:1.6}
+
+.callout{border:1px solid var(--line); border-left:3px solid var(--green); background:var(--card);
+  border-radius:10px; padding:1rem 1.15rem; margin:1.25rem 0; max-width:64ch}
+.callout.warn{border-left-color:var(--amber)}
+.callout p{color:var(--fg-2); margin:0; font-size:.9375rem}
+.callout p+p{margin-top:.5rem}
+
+.grid-2{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap:1rem; margin-top:1rem}
+.mini{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:1.1rem}
+.mini h4{text-transform:uppercase; font-family:var(--m); font-size:.625rem; letter-spacing:.14em; color:var(--fg-3); margin:0 0 .6rem}
+.mini p{color:var(--fg-2); font-size:.9rem; margin:0}
+
+table{width:100%; border-collapse:collapse; margin:1rem 0; font-size:.9rem}
+th,td{text-align:left; padding:.6rem .8rem; border-bottom:1px solid var(--line)}
+th{font-family:var(--m); font-size:.6875rem; letter-spacing:.1em; text-transform:uppercase; color:var(--fg-3)}
+td{color:var(--fg-2); vertical-align:top}
+.tagv{font-family:var(--m); font-size:.6875rem; padding:.22rem .55rem; border-radius:8px; white-space:nowrap; font-weight:500}
+.t-ok{color:var(--green); border:1px solid color-mix(in srgb,var(--green) 42%,transparent)}
+.t-warn{color:var(--amber); border:1px solid color-mix(in srgb,var(--amber) 42%,transparent)}
+.t-bad{color:var(--red); border:1px solid color-mix(in srgb,var(--red) 45%,transparent)}
+
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:.55rem; cursor:pointer;
+  font-family:var(--f); font-size:.875rem; font-weight:700; letter-spacing:-.005em;
+  padding:.6rem .95rem; border-radius:9px; border:1px solid transparent;
+  background:var(--green); color:var(--green-ink);
+  transition:background .16s var(--ease),border-color .16s var(--ease),color .16s var(--ease)}
+.btn:hover{background:#4ee3ad; text-decoration:none}
+.btn-2{background:transparent; color:var(--fg); border-color:var(--line-2)}
+.btn-2:hover{background:var(--card-2); border-color:var(--fg-3); color:var(--fg)}
+
+.setup-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,21rem),1fr)); gap:1rem; margin-top:1.5rem}
+.r-card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:1.15rem;
+  display:flex; flex-direction:column; gap:.85rem}
+.r-head{display:flex; align-items:center; gap:.75rem}
+.r-logo{width:2.6rem;height:2.6rem;flex:none;border-radius:9px;background:var(--sunk);
+  border:1px solid var(--line-2);display:flex;align-items:center;justify-content:center;
+  overflow:hidden;color:var(--fg-2);font-weight:800;font-size:1rem;text-transform:uppercase}
+.r-logo img{width:100%;height:100%;object-fit:contain;padding:.28rem}
+.r-title{flex:1; min-width:0}
+.r-title h3{font-size:1.0625rem; letter-spacing:-.02em}
+.r-title .r-cat{display:block; font-family:var(--m); font-size:.625rem; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--fg-3); margin-top:.12rem}
+.r-credit{font-family:var(--m); font-size:.75rem; color:var(--green)}
+.r-setup{color:var(--fg-2); font-size:.9375rem}
+.r-models h4{font-family:var(--m); font-size:.625rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--fg-3); margin-bottom:.5rem; font-weight:500}
+.chips{display:flex; flex-wrap:wrap; gap:.4rem}
+.chip{font-family:var(--m); font-size:.6875rem; color:var(--fg-2); border:1px solid var(--line-2);
+  background:var(--sunk); border-radius:99px; padding:.22rem .55rem; white-space:nowrap}
+.err{color:var(--red); font-family:var(--m); font-size:.8125rem; padding:1rem 0}
+
+.foot{border-top:1px solid var(--line); padding:clamp(2rem,5vw,3rem) 0 2.5rem; color:var(--fg-3)}
+.foot p{font-size:.875rem; max-width:60ch}
+.foot .mono{font-size:.625rem; letter-spacing:.18em; color:var(--fg-2); margin-bottom:.6rem}
+.foot-actions{margin-top:1rem; display:flex; gap:1rem}
+.foot-actions a{color:var(--fg-2); font-size:.8125rem}
+.foot-actions a:hover{color:var(--fg)}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html">
+      <b>FetchRouter</b>
+      <span>Guide &amp; documentation</span>
+    </a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="index.html#board">Board</a>
+      <a href="index.html#how">How to read a card</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <header class="doc-hero">
+    <div class="wrap">
+      <p class="eyebrow">GUIDE &middot; VERSION 2</p>
+      <h1>How to use FetchRouter — and set up every gateway on it</h1>
+      <p class="sub">Pick an offer, sign up through the link, pull the API key, and point your coding agent or chat client at it. Step-by-step for every gateway listed on the board.</p>
+    </div>
+  </header>
+
+  <div class="wrap doc">
+    <nav class="toc" aria-label="Guide sections">
+      <a href="#visitors">For visitors</a>
+      <a href="#card">Reading a card</a>
+      <a href="#verdicts">Verdicts &amp; ranking</a>
+      <a href="#referral">Referral links</a>
+      <a href="#setup">Set up your router</a>
+      <a href="#status">Live status</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <section class="sec" id="visitors">
+      <h2><span class="mono">01</span>For visitors</h2>
+      <p>FetchRouter is a board of AI gateways that give free credit on signup. You are scanning for two things at once: how much credit, and whether the gateway can be trusted. The board is built so you can decide before you spend an OAuth grant or a real signup.</p>
+      <h3>Find an offer</h3>
+      <ul>
+        <li><strong>Search</strong> — the box above the board matches gateway names, model names, tags, and descriptions. Type <code>claude</code> to see every gateway that routes Anthropic models, or <code>github</code> to see which ones need a GitHub login.</li>
+        <li><strong>Filter</strong> — narrow by <em>category</em> (API router, chat gateway, first-party platform), by <em>model class</em> (wide catalogue, Anthropic only, Chinese models), or by <em>status</em> (verified, unverified, disputed).</li>
+        <li><strong>Sort</strong> — default is <em>highest rated</em>, which pins featured offers to the top and then ranks by rating. Switch to <em>most credit</em> to rank purely by the dollar figure, or <em>A → Z</em> for an alphabetical sweep.</li>
+      </ul>
+      <div class="callout">
+        <p><strong>Start here:</strong> choose a <em>verified</em>, highly-rated gateway whose model class matches what you use — Anthropic-only for Claude Code, wide catalogue for anything. The default sort already puts those first.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="card">
+      <h2><span class="mono">02</span>Reading a card</h2>
+      <div class="grid-2">
+        <div class="mini"><h4>Credit</h4><p>The signup grant in the unit the gateway stated — dollars, tokens, or unstated. The biggest number is not the best offer.</p></div>
+        <div class="mini"><h4>Verdict</h4><p>Verified, unverified, or disputed. It carries the same visual weight as the dollar figure on purpose.</p></div>
+        <div class="mini"><h4>Outlook</h4><p>Stable, developing, watch, or negative — the owner&rsquo;s read on whether the offer will survive.</p></div>
+        <div class="mini"><h4>Rating</h4><p>A 0–5 rating, or <em>NOT RATED</em> when the offer could not be graded. Unrated offers sort last.</p></div>
+        <div class="mini"><h4>Login</h4><p>GitHub OAuth, Google OAuth, or any email. This is part of the true cost of a signup.</p></div>
+        <div class="mini"><h4>Cost of the click</h4><p>The duty list — account-age rules, coding-agent-only restrictions, referral requirements. Read it before you sign up.</p></div>
+        <div class="mini"><h4>Status</h4><p>Live, stale, or offline — probed automatically every day. Offline cards are dimmed and their signup button is disabled.</p></div>
+      </div>
+      <h3>What the metadata means</h3>
+      <ul>
+        <li><strong>Models</strong> — the routed catalogue as advertised. A short list is not automatically bad; a current model beats a long list of dead ones.</li>
+        <li><strong>Model class</strong> — wide catalogue, Anthropic only, Chinese models, or first-party platform. Match it to your tool.</li>
+        <li><strong>Tags</strong> — quick notes like <code>$40 per referral</code> or <code>crypto accepted</code>.</li>
+        <li><strong>Checked</strong> — the last date the owner reviewed the offer. Offers change fast; treat anything older than a few weeks with extra caution.</li>
+        <li><strong>Featured</strong> — the owner&rsquo;s current best offer, pinned to the top of the default sort.</li>
+      </ul>
+    </section>
+
+    <section class="sec" id="verdicts">
+      <h2><span class="mono">03</span>Verdicts &amp; ranking</h2>
+      <p>The board publishes its own uncertainty. Every entry carries a verification verdict, and unverifiable offers are ranked accordingly — even though the site earns from the click either way.</p>
+      <table>
+        <thead><tr><th>Verdict</th><th>Meaning</th><th>Shown as</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tagv t-ok">✓ Verified</span></td><td>The owner confirmed the amount and terms against a non-affiliate source.</td><td>Green</td></tr>
+          <tr><td><span class="tagv t-warn">? Unverified</span></td><td>Advertised figure; no independent confirmation found. Treated as real but not confirmed.</td><td>Amber</td></tr>
+          <tr><td><span class="tagv t-bad">! Disputed</span></td><td>Reports conflict, or the amount could not be established in any unit. Ranked below verified offers.</td><td>Red</td></tr>
+        </tbody>
+      </table>
+      <div class="callout">
+        <p><strong>The number is not the grade.</strong> A $200 claim that nobody could confirm ranks below a $70 grant that works. That is why the default sort is by rating, never by the dollar figure.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="referral">
+      <h2><span class="mono">04</span>Referral links</h2>
+      <p>Every <em>Get credit</em> button opens the gateway&rsquo;s signup page. Where the owner has set a referral code, it is appended to the URL as the gateway&rsquo;s own query parameter (<code>?aff=…</code>, <code>?ref=…</code>, <code>?invite_code=…</code>).</p>
+      <ul>
+        <li><strong>Get credit</strong> — opens the signup URL (with the owner&rsquo;s referral code when one is set) in a new tab.</li>
+        <li><strong>Copy link</strong> — copies the same URL so you can share it or open it later. If no referral code is set, it copies the plain signup URL.</li>
+      </ul>
+      <div class="callout warn">
+        <p><strong>Disclosure.</strong> FetchRouter earns from signups reached through this page. The board says so plainly rather than burying it — treat the links accordingly.</p>
+      </div>
+    </section>
+
+    <section class="sec" id="setup">
+      <h2><span class="mono">05</span>Set up your router</h2>
+      <p>Each gateway below comes with its signup path, the credit you get, and how to configure it once you are in. The details are pulled live from <code>routers.json</code>, so this page always matches the board.</p>
+      <div class="callout">
+        <p><strong>The general pattern:</strong> sign up through the link on the board → generate an API key in the dashboard → point your client at the gateway&rsquo;s endpoint. For <em>Claude Code</em>, set <code>ANTHROPIC_BASE_URL</code> and <code>ANTHROPIC_AUTH_TOKEN</code> (or use a custom provider during login). For <em>Codex</em>, <em>Cline</em>, or anything OpenAI-compatible, use the gateway&rsquo;s OpenAI-compatible endpoint with the same key.</p>
+      </div>
+      <div class="setup-grid" id="setupGrid">
+        <p class="err">Loading gateways…</p>
+      </div>
+    </section>
+
+    <section class="sec" id="status">
+      <h2><span class="mono">06</span>Live status</h2>
+      <p>Every gateway is probed automatically once a day — no one checks by hand. The badge on each card tells you what the last probe found:</p>
+      <ul>
+        <li><span class="tagv t-ok">● Live</span> — the gateway answered the last check. Any HTTP response counts, so a bot-walled login page still counts as alive.</li>
+        <li><span class="tagv t-warn">● Stale</span> — no successful probe in four days. The check pipeline may have stalled.</li>
+        <li><span class="tagv t-bad">● Offline</span> — the probe could not reach it. The card is dimmed, its signup button is disabled, and it is treated as deprecated until a check clears it.</li>
+      </ul>
+      <p>The line above the board shows the date of the last automatic check. If a gateway you care about is offline, check the gateway&rsquo;s own site before giving up — temporary downtime happens.</p>
+    </section>
+
+    <section class="sec" id="faq">
+      <h2><span class="mono">07</span>FAQ</h2>
+      <h3>Is the data verified?</h3>
+      <p>Not by FetchRouter. Figures are third-party reported (seeded from the Router Watch board on 2026-08-31). Each card&rsquo;s verdict is the owner&rsquo;s confidence in a figure, and unverified figures are ranked accordingly.</p>
+      <h3>Why is a bigger credit ranked lower?</h3>
+      <p>An amount that could not be confirmed is worth less to you than one that works. Verification is part of the ranking, not decoration.</p>
+      <h3>What does NOT RATED mean?</h3>
+      <p>The owner chose not to grade that offer — usually because the amount or catalogue could not be established in any form. No grade is implied.</p>
+      <h3>Which gateway should I set up?</h3>
+      <p>Start with a verified, highly-rated offer whose model class matches your tool. For Claude Code or Codex, an <em>Anthropic only</em> or <em>wide catalogue</em> gateway covers you; for chat-only use, a chat gateway is enough. The default sort already puts the sensible candidates on top.</p>
+      <h3>How do I use the same key in several tools?</h3>
+      <p>One gateway key works everywhere that gateway supports — OpenAI-compatible endpoints work in Codex, Cline, OpenWebUI and custom clients; Anthropic-compatible endpoints work in Claude Code. Use the same key, just a different base URL.</p>
+      <h3>Why is a card dimmed with an Offline button?</h3>
+      <p>The daily probe could not reach that gateway. The card is kept visible (its credit terms still matter if it comes back) but is marked as deprecated until a future check succeeds.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="mono">FETCHROUTER — AN AFFILIATE BOARD</p>
+    <p>FetchRouter earns from signups reached through this page. Figures are seeded from the Router Watch board on 2026-08-31 and are third-party reported, not FetchRouter&rsquo;s own verification.</p>
+    <p class="foot-actions"><a href="index.html">Back to the board</a></p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+  const GRID = document.getElementById("setupGrid");
+  const LOGIN = { github: "GitHub login", google: "Google login", any: "Any email" };
+  const domainOf = url => { try { return new URL(url).hostname.replace(/^www\./, ""); } catch (e) { return ""; } };
+  const fmtCount = n => {
+    if (n == null) return "";
+    if (n >= 1e6) return (n / 1e6).toLocaleString(undefined, { maximumFractionDigits: 1 }) + "M";
+    if (n >= 1000) return Math.round(n / 1000) + "k";
+    return String(n);
+  };
+  const creditText = r => {
+    const d = r.declared || {};
+    if (d.kind === "usd") {
+      let t = "$" + Number(d.usd != null ? d.usd : 0).toLocaleString();
+      if (d.usdMax != null && d.usdMax > 0 && d.usdMax !== d.usd) t += "–$" + Number(d.usdMax).toLocaleString();
+      return t;
+    }
+    if (d.kind === "tokens") return fmtCount(d.tokens) + " tokens";
+    return "Unstated credit";
+  };
+  const el = (t, a, ...kids) => {
+    const n = document.createElement(t);
+    if (a) for (const k in a) {
+      const v = a[k];
+      if (v == null) continue;
+      if (k === "class") n.className = v;
+      else n.setAttribute(k, v);
+    }
+    for (const kid of kids) if (kid != null) n.append(kid.nodeType ? kid : document.createTextNode(kid));
+    return n;
+  };
+  function logo(r) {
+    const tile = el("span", { class: "r-logo", "aria-hidden": "true" });
+    const dom = domainOf(r.baseUrl);
+    const fallback = () => { tile.textContent = (r.name || "?").charAt(0).toUpperCase(); };
+    if (!dom) { fallback(); return tile; }
+    const im = document.createElement("img");
+    im.alt = ""; im.loading = "lazy"; im.referrerPolicy = "no-referrer";
+    im.src = "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(dom) + "&sz=64";
+    let tries = 0;
+    im.addEventListener("error", () => {
+      if (tries === 0) { tries = 1; im.src = "https://icon.horse/icon/" + encodeURIComponent(dom); }
+      else fallback();
+    });
+    tile.append(im);
+    return tile;
+  }
+  function setupCard(r) {
+    const meta = [creditText(r), LOGIN[r.login] || r.login || ""].filter(Boolean).join(" · ");
+    const setup = r.setup || "Sign up through the board link, then generate an API key in the dashboard and point your client at the base URL your dashboard shows. Exact steps vary by gateway — check the dashboard&rsquo;s API page.";
+    const card = el("article", { class: "r-card" },
+      el("div", { class: "r-head" },
+        logo(r),
+        el("div", { class: "r-title" }, el("h3", {}, r.name), el("span", { class: "r-cat" }, r.category || "Gateway")),
+        el("a", { class: "btn btn-2", href: r.baseUrl || "#", target: "_blank", rel: "noopener nofollow" }, "Sign up")
+      ),
+      el("p", { class: "r-credit" }, meta),
+      el("p", { class: "r-setup" }, setup)
+    );
+    if (r.models && r.models.length) {
+      card.append(el("div", { class: "r-models" },
+        el("h4", {}, "Models"),
+        el("div", { class: "chips" }, ...r.models.map(m => el("span", { class: "chip" }, m)))
+      ));
+    }
+    return card;
+  }
+  async function load() {
+    try {
+      const res = await fetch("routers.json", { cache: "no-store" });
+      if (!res.ok) throw new Error(String(res.status));
+      const json = await res.json();
+      const routers = (Array.isArray(json) ? json : json.routers || []).slice()
+        .sort((a, b) => a.name.localeCompare(b.name));
+      GRID.innerHTML = "";
+      const frag = document.createDocumentFragment();
+      routers.forEach(r => frag.append(setupCard(r)));
+      GRID.append(frag);
+    } catch (e) {
+      GRID.innerHTML = "<p class=\"err\">Could not load routers.json — open this page through a local server or the deployed site.</p>";
+    }
+  }
+  load();
+})();
+</script>
+</body>
+</html>

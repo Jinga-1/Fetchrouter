@@ -1,0 +1,37 @@
+name: Health check
+
+on:
+  schedule:
+    - cron: "0 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Probe every gateway
+        run: node check.js
+
+      - name: Commit and push status if changed
+        run: |
+          git checkout "${GITHUB_REF_NAME}"
+          if git diff --quiet routers.json; then
+            echo "No status change — nothing to commit."
+          else
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add routers.json
+            git commit -m "chore: daily health check $(date -u +%F)"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+            echo "Committed updated health status."
+          fi
