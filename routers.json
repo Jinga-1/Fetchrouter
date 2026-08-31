@@ -433,13 +433,13 @@
       "id": "kktoken",
       "name": "KKToken",
       "category": "API router",
-      "description": "Models, pricing and the signup grant sit behind the login wall — the catalogue can only be reviewed after the account exists. The board has now verified the gateway and its terms.",
+      "description": "$100 on signup, confirmed on the board. The catalogue, pricing and remaining terms sit behind the login wall — review them after creating the account.",
       "declared": {
-        "kind": "unstated",
-        "usd": null,
+        "kind": "usd",
+        "usd": 100,
         "usdMax": null,
         "tokens": null,
-        "note": "Grant amount is only visible after signup."
+        "note": "$100 on signup, confirmed on 2026-08-31."
       },
       "rating": 2.5,
       "verification": "verified",
@@ -459,9 +459,9 @@
         "claude-opus-4-8-thinking"
       ],
       "tags": [
-        "referral access",
+        "$100 on signup",
         "verified",
-        "amount behind login"
+        "referral access"
       ],
       "baseUrl": "https://kktoken.cc/sign-up?aff=Djv4",
       "codeParam": "aff",

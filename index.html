@@ -304,6 +304,21 @@ select:focus-visible{border-color:var(--green)}
 .publish h3{font-size:1rem; margin-bottom:.45rem}
 .publish p{color:var(--fg-2); font-size:.875rem; margin-bottom:1rem}
 .publish .btn{margin-right:.6rem}
+
+/* ---------- Admin lock ---------- */
+.lock{position:fixed; inset:0; z-index:110}
+.lock .panel-back{position:absolute; inset:0; background:rgba(4,6,7,.72); backdrop-filter:blur(3px)}
+.lock-box{position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:min(22rem,calc(100vw - 2rem));
+  background:var(--card); border:1px solid var(--line-2); border-radius:var(--r); padding:1.5rem;
+  box-shadow:0 24px 60px -24px rgba(0,0,0,.9)}
+.lock-box h2{font-size:1.125rem; letter-spacing:-.02em}
+.lock-box>p{color:var(--fg-2); font-size:.875rem; margin:.4rem 0 1.1rem}
+.lock-field{display:flex; gap:.5rem}
+.lock-field input{flex:1; min-width:0; background:var(--sunk); color:var(--fg); border:1px solid var(--line);
+  border-radius:10px; padding:.7rem .9rem; font:600 1rem var(--f); outline:none}
+.lock-field input:focus{border-color:var(--green-dim)}
+.lock-err{font-family:var(--m); font-size:.75rem; color:var(--red); margin-top:.75rem; min-height:1.1em}
+.lock-actions{display:flex; justify-content:flex-end; gap:.6rem; margin-top:1.1rem}
 </style>
 </head>
 <body>
@@ -416,6 +431,25 @@ select:focus-visible{border-color:var(--green)}
 </footer>
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<div id="lock" class="lock" hidden role="dialog" aria-modal="true" aria-labelledby="lockTitle">
+  <div class="panel-back" id="lockBack"></div>
+  <div class="lock-box">
+    <h2 id="lockTitle">Admin is locked</h2>
+    <p>Enter the access code to open the admin panel.</p>
+    <form id="lockForm" novalidate>
+      <div class="lock-field">
+        <label class="vh" for="lockCode">Access code</label>
+        <input id="lockCode" type="password" autocomplete="off" inputmode="text">
+        <button type="submit" class="btn">Unlock</button>
+      </div>
+      <p class="lock-err" id="lockErr" role="alert"></p>
+      <div class="lock-actions">
+        <button type="button" class="linkish" id="lockCancel">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <div id="admin" class="panel" hidden role="dialog" aria-modal="true" aria-labelledby="adminTitle">
   <div class="panel-back" id="adminBack"></div>
@@ -635,6 +669,7 @@ select:focus-visible{border-color:var(--green)}
   let state = { q: "", cat: "all", mt: "all", ver: "all", sort: "best" };
   let editingId = null;
   let toastTimer = null;
+  const ADMIN_CODE = "jinga";
 
   const today = () => new Date().toISOString().slice(0, 10);
 
@@ -1028,9 +1063,34 @@ select:focus-visible{border-color:var(--green)}
     document.body.classList.remove("no-scroll");
     if (location.hash === "#admin") history.replaceState(null, "", "#top");
   }
+
+  /* ---------- admin lock ---------- */
+  function isUnlocked() {
+    return sessionStorage.getItem("fr.admin") === "1";
+  }
+  function markUnlocked() {
+    sessionStorage.setItem("fr.admin", "1");
+  }
+  function openLock() {
+    $("#lock").hidden = false;
+    document.body.classList.add("no-scroll");
+    $("#lockErr").textContent = "";
+    $("#lockCode").value = "";
+    $("#lockCode").focus();
+  }
+  function closeLock() {
+    $("#lock").hidden = true;
+    document.body.classList.remove("no-scroll");
+    if (location.hash === "#admin") history.replaceState(null, "", "#top");
+  }
   function syncAdmin() {
-    if (location.hash === "#admin") openAdmin();
-    else if (!$("#admin").hidden) closeAdmin();
+    if (location.hash === "#admin") {
+      if (isUnlocked()) openAdmin();
+      else openLock();
+    } else {
+      if (!$("#admin").hidden) closeAdmin();
+      if (!$("#lock").hidden) closeLock();
+    }
   }
 
   /* ---------- events ---------- */
@@ -1071,6 +1131,20 @@ select:focus-visible{border-color:var(--green)}
   $("#cancelBtn").addEventListener("click", startNew);
   $("#adminClose").addEventListener("click", closeAdmin);
   $("#adminBack").addEventListener("click", closeAdmin);
+  $("#lockForm").addEventListener("submit", e => {
+    e.preventDefault();
+    if ($("#lockCode").value.trim() === ADMIN_CODE) {
+      markUnlocked();
+      $("#lock").hidden = true;
+      openAdmin();
+    } else {
+      $("#lockErr").textContent = "Wrong code — try again.";
+      $("#lockCode").value = "";
+      $("#lockCode").focus();
+    }
+  });
+  $("#lockCancel").addEventListener("click", closeLock);
+  $("#lockBack").addEventListener("click", closeLock);
   $("#adminForm").addEventListener("submit", e => {
     e.preventDefault();
     const r = readForm();
@@ -1114,7 +1188,9 @@ select:focus-visible{border-color:var(--green)}
     toast("Local draft discarded");
   });
   document.addEventListener("keydown", e => {
-    if (e.key === "Escape" && !$("#admin").hidden) closeAdmin();
+    if (e.key !== "Escape") return;
+    if (!$("#lock").hidden) closeLock();
+    else if (!$("#admin").hidden) closeAdmin();
   });
   window.addEventListener("hashchange", syncAdmin);
   document.addEventListener("click", e => {
