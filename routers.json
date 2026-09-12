@@ -44,7 +44,7 @@
       "health": {
         "status": "up",
         "code": 200,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign up with GitHub through the board link — the grant depends on the referral link you arrive through. After signup, generate an API key in the dashboard and copy the API base URL shown there. Requests must come from a coding agent: in Claude Code set ANTHROPIC_BASE_URL and ANTHROPIC_AUTH_TOKEN to the gateway values, or configure Codex / Cline with an OpenAI-compatible endpoint using the same key. Plain chat clients are refused."
     },
@@ -92,7 +92,7 @@
       "health": {
         "status": "up",
         "code": 200,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign in with Google through the board link; the 300,000-token grant lands in your account (a plain signup without the referral link grants less). Use the chat interface directly, or generate an API key in your account page for API clients. The free plan model list is short but current."
     },
@@ -139,7 +139,7 @@
       "health": {
         "status": "up",
         "code": 200,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Register with an email on the first-party platform; the  grant applies at signup and each referral adds  (up to thirty people). Use the MiMo models in the web chat or via the platform API with a dashboard key."
     },
@@ -183,7 +183,7 @@
       "health": {
         "status": "up",
         "code": 403,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign up with GitHub — the account must have been created before 2026. Anthropic models only: in Claude Code set ANTHROPIC_BASE_URL and ANTHROPIC_AUTH_TOKEN from your dashboard, or use the OpenAI-compatible endpoint with other clients. A  per-referral bonus is advertised on top of the signup grant."
     },
@@ -233,7 +233,7 @@
       "health": {
         "status": "up",
         "code": 200,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign up with GitHub; the base  grant scales upward with account age. Generate an API key and use the single OpenAI-compatible endpoint for all 160+ models — ids like gpt-5.6-sol or deepseek-v4-pro work in Claude Code (custom provider), Codex, Cline, or any OpenAI-compatible client. Some routed models are intermittently unavailable."
     },
@@ -279,7 +279,7 @@
       "health": {
         "status": "up",
         "code": 200,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign up with GitHub for the  grant; a  daily check-in is advertised on top. Anthropic models only — set the Anthropic-compatible base URL and token from the dashboard in Claude Code (ANTHROPIC_BASE_URL / ANTHROPIC_AUTH_TOKEN), or use the OpenAI-compatible endpoint elsewhere. Neither figure could be confirmed away from affiliate sources."
     },
@@ -325,7 +325,7 @@
       "health": {
         "status": "up",
         "code": 403,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign up with GitHub;  is the reported grant, but reports conflict — treat the amount as disputed. Anthropic models only: same pattern as other Anthropic gateways — dashboard key, then ANTHROPIC_BASE_URL / ANTHROPIC_AUTH_TOKEN in Claude Code or the OpenAI-compatible endpoint in other clients."
     },
@@ -376,7 +376,7 @@
       "health": {
         "status": "up",
         "code": 403,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign up with an email;  is advertised but was never confirmed outside affiliate links. Chat models only (no coding-agent requirement). Generate a key in the dashboard and use the OpenAI-compatible endpoint with the model ids on the card. No one has verified it — rank your expectations accordingly."
     },
@@ -425,7 +425,7 @@
       "health": {
         "status": "up",
         "code": 200,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign up with an email; the grant is reported as thousands of credits with no unit ever stated. Chinese models only (DeepSeek, kimi, MiniMax, Qwen, glm, step). Expect a dashboard key and an OpenAI-compatible endpoint."
     },
@@ -471,10 +471,10 @@
       "health": {
         "status": "up",
         "code": 200,
-        "checkedAt": "2026-09-11T05:01:22.909Z"
+        "checkedAt": "2026-09-12T05:01:05.049Z"
       },
       "setup": "Sign up with an email, but know this first: the catalogue, pricing, and signup grant are only visible after you create the account. If the terms matter before you commit, this one cannot help you decide in advance."
     }
   ],
-  "lastChecked": "2026-09-11"
+  "lastChecked": "2026-09-12"
 }
